@@ -1,0 +1,68 @@
+﻿<Window x:Class="WPF_LoginForm.View.AdminDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Administrador" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#f0f2f5">
+
+    <Grid>
+        <!-- Menú lateral -->
+        <StackPanel Background="#1e1e2f" Width="220" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <Image Source="https://img.icons8.com/fluency/96/admin-settings-male.png" Height="96" Margin="20"/>
+            <TextBlock Text="Administrador" Foreground="White" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="GestionClientes_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://img.icons8.com/fluency/96/user-group-man-man.png" Height="30"/>
+                    <TextBlock Text="Clientes" Foreground="White" Margin="10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="GestionProductos_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://img.icons8.com/fluency/96/box.png" Height="30"/>
+                    <TextBlock Text="Inventario" Foreground="White" Margin="10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="GestionVentas_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://img.icons8.com/fluency/96/shopping-cart.png" Height="30"/>
+                    <TextBlock Text="Ventas" Foreground="White" Margin="10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="GestionCompras_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://img.icons8.com/fluency/96/invoice.png" Height="30"/>
+                    <TextBlock Text="Compras" Foreground="White" Margin="10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="GestionReportes_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://img.icons8.com/fluency/96/combo-chart.png" Height="30"/>
+                    <TextBlock Text="Reportes" Foreground="White" Margin="10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="GestionUsuarios_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://img.icons8.com/fluency/96/admin-settings-male.png" Height="30"/>
+                    <TextBlock Text="Usuarios" Foreground="White" Margin="10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MenuButtonStyle}" Click="CerrarSesion_Click" Margin="0,20,0,0">
+                <TextBlock Text="Cerrar Sesión" Foreground="White" Margin="10,0"/>
+            </Button>
+        </StackPanel>
+
+        <!-- Contenido principal -->
+        <Grid Margin="220,0,0,0" Background="White" x:Name="ContentGrid">
+            <!-- Aquí se cargan los formularios dinámicamente -->
+            <TextBlock Text="Bienvenido Administrador" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        </Grid>
+    </Grid>
+</Window>

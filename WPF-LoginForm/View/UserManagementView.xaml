@@ -1,0 +1,66 @@
+﻿<Window x:Class="WPF_LoginForm.View.UserManagementView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestión de Usuarios" Height="600" Width="800"
+        Background="#F9F9F9" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Encabezado -->
+        <TextBlock Text="👤 Gestión de Usuarios" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" />
+
+        <!-- Formulario -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,15" HorizontalAlignment="Left">
+            <StackPanel Margin="0,0,15,0">
+                <TextBlock Text="Nombre de Usuario" FontWeight="SemiBold" />
+                <TextBox Width="150" Height="30" x:Name="txtNombreUsuario" />
+            </StackPanel>
+            <StackPanel Margin="0,0,15,0">
+                <TextBlock Text="Contraseña" FontWeight="SemiBold" />
+                <PasswordBox Width="150" Height="30" x:Name="txtContrasena" />
+            </StackPanel>
+            <StackPanel Margin="0,0,15,0">
+                <TextBlock Text="Rol" FontWeight="SemiBold" />
+                <ComboBox Width="150" Height="30" x:Name="cmbRol">
+                    <ComboBoxItem Content="Administrador"/>
+                    <ComboBoxItem Content="Vendedor"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,0,15,0">
+                <TextBlock Text="ID Vendedor" FontWeight="SemiBold" />
+                <ComboBox x:Name="cmbVendedor"
+                  Width="200"
+                  Height="30"
+                  DisplayMemberPath="Nombre"
+                  SelectedValuePath="IdVendedor"
+                  SelectedValue="{Binding IdVendedor}" />
+            </StackPanel>
+
+            <Button x:Name="btnAgregar" Content="➕ Agregar" Width="100" Height="30" Background="#27AE60" Foreground="White" Margin="10,20,0,0" Click="BtnAgregar_Click" />
+        </StackPanel>
+
+        <!-- Lista de Usuarios -->
+        <DataGrid x:Name="dgUsuarios" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,10,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdUsuario}" Width="50"/>
+                <DataGridTextColumn Header="Usuario" Binding="{Binding NombreUsuario}" Width="*"/>
+                <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="100"/>
+                <DataGridTextColumn Header="Vendedor" Binding="{Binding Vendedor.Nombre}" />
+                <DataGridTemplateColumn Header="Acciones" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="✏️" Width="40" Margin="5,0" Click="BtnEditar_Click"/>
+                                <Button Content="🗑️" Width="40" Margin="5,0" Click="BtnEliminar_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

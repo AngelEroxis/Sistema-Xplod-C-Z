@@ -1,0 +1,48 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPF_LoginForm.View"
+             xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="WPF_LoginForm.View.GestionClientesView"
+             Background="#f4f6f8" av:DesignHeight="318.938" av:DesignWidth="760.154">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Lista de Clientes -->
+        <GroupBox Header="Clientes" FontWeight="Bold" Margin="5">
+            <DataGrid x:Name="dgClientes" AutoGenerateColumns="False" SelectionChanged="dgClientes_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*" />
+                    <DataGridTextColumn Header="CI" Binding="{Binding CI}" Width="*" />
+                    <DataGridTextColumn Header="Celular" Binding="{Binding Celular}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <!-- Detalle de Crédito -->
+        <GroupBox Header="Detalle de Crédito" Grid.Column="1" Margin="5">
+            <StackPanel Margin="10">
+                <TextBlock Text="{Binding SelectedCliente.Nombre}" FontSize="16" FontWeight="Bold" />
+                <TextBlock Text="Créditos:" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <ItemsControl ItemsSource="{Binding Creditos}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#ccc" BorderThickness="1" Padding="5" Margin="5">
+                                <StackPanel>
+                                    <TextBlock Text="Monto total: Bs. {Binding MontoTotal}" />
+                                    <TextBlock Text="Saldo pendiente: Bs. {Binding SaldoPendiente}" />
+                                    <TextBlock Text="Cuotas: {Binding Cuotas}" />
+                                    <TextBlock Text="Estado: {Binding EstadoCredito}" />
+                                    <Button Content="Ver pagos" Tag="{Binding}" Click="VerPagos_Click" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,185 @@
+﻿<Window x:Class="WPF_LoginForm.View.RegistrarPagoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Registrar Pago" Height="500" Width="600"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="#f8f9fa">
+
+    <Window.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderBrush" Value="#e9ecef"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#ddd" Direction="270" ShadowDepth="2" Opacity="0.3" BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="#495057"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="InputStyle" TargetType="Control">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource InputStyle}">
+            <Setter Property="BorderBrush" Value="#ced4da"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource InputStyle}">
+            <Setter Property="BorderBrush" Value="#ced4da"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker" BasedOn="{StaticResource InputStyle}">
+            <Setter Property="BorderBrush" Value="#ced4da"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Style="{StaticResource CardStyle}" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Registrar Nuevo Pago" FontSize="20" FontWeight="Bold" Foreground="#2c3e50" Margin="0,0,0,10"/>
+                <TextBlock x:Name="txtInfoCliente" FontSize="14" Foreground="#6c757d" 
+                           Text="Cliente: Nombre del Cliente"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Formulario -->
+        <Border Grid.Row="1" Style="{StaticResource CardStyle}" Padding="25">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Selección de Crédito -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Crédito a Pagar:" Style="{StaticResource LabelStyle}"/>
+                <ComboBox x:Name="cbCreditos" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}"
+                          DisplayMemberPath="DisplayText" SelectedValuePath="IdCredito"
+                          SelectionChanged="cbCreditos_SelectionChanged"/>
+
+                <!-- Monto del Pago -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Monto a Pagar:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="txtMontoPago" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}"
+                         TextChanged="txtMontoPago_TextChanged"/>
+
+                <!-- Método de Pago -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Método de Pago:" Style="{StaticResource LabelStyle}"/>
+                <ComboBox x:Name="cbMetodoPago" Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}">
+                    <ComboBoxItem Content="Efectivo" IsSelected="True"/>
+                    <ComboBoxItem Content="Transferencia"/>
+                    <ComboBoxItem Content="Cheque"/>
+                    <ComboBoxItem Content="Tarjeta"/>
+                </ComboBox>
+
+                <!-- Fecha del Pago -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Fecha del Pago:" Style="{StaticResource LabelStyle}"/>
+                <DatePicker x:Name="dpFechaPago" Grid.Row="3" Grid.Column="1" Style="{StaticResource DatePickerStyle}"/>
+
+                <!-- Información del Crédito Seleccionado -->
+                <Border Grid.Row="4" Grid.ColumnSpan="2" Background="#f8f9fa" Padding="15" CornerRadius="5" Margin="0,10">
+                    <StackPanel>
+                        <TextBlock Text="Información del Crédito Seleccionado" FontWeight="SemiBold" Foreground="#495057" Margin="0,0,0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Saldo Pendiente:" FontWeight="Medium" Foreground="#6c757d"/>
+                                <TextBlock x:Name="txtSaldoPendiente" Text="Bs. 0.00" FontWeight="Bold" Foreground="#dc3545" FontSize="16"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Nuevo Saldo (después del pago):" FontWeight="Medium" Foreground="#6c757d"/>
+                                <TextBlock x:Name="txtNuevoSaldo" Text="Bs. 0.00" FontWeight="Bold" Foreground="#28a745" FontSize="16"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Botones -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Cancelar" Padding="15,8" Background="#6c757d" Foreground="White"
+                    BorderBrush="Transparent" Click="BtnCancelar_Click" Margin="0,0,10,0">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#5a6268"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button x:Name="btnGuardar" Content="Registrar Pago" Padding="15,8" Background="#28a745" Foreground="White"
+                    BorderBrush="Transparent" Click="BtnGuardar_Click" IsEnabled="False">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#218838"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="#c0c0c0"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
