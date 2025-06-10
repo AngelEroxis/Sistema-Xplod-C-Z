@@ -39,7 +39,9 @@ namespace WPF_LoginForm.View
 
         private void GestionVentas_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abrir Gestión de Ventas y Créditos");
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(new VentasView());
+
         }
 
         private void GestionReportes_Click(object sender, RoutedEventArgs e)

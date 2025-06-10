@@ -35,5 +35,9 @@ namespace WPF_LoginForm.Model
 
         [Column("unidad_medida")]
         public string UnidadMedida { get; set; }
+
+        // Propiedad de navegación
+        public virtual Inventario Inventario { get; set; }
+
     }
 }

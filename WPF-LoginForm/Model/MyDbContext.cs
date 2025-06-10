@@ -23,6 +23,8 @@ namespace WPF_LoginForm.Model
         public DbSet<DetalleVenta> DetalleVentas { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
+        public DbSet<Inventario> Inventarios { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -46,6 +48,13 @@ namespace WPF_LoginForm.Model
                 .HasRequired(dv => dv.Producto)
                 .WithMany()
                 .HasForeignKey(dv => dv.IdProducto);
+
+            base.OnModelCreating(modelBuilder);
+
+            // Relación uno a uno entre Producto e Inventario
+            modelBuilder.Entity<Producto>()
+                .HasOptional(p => p.Inventario)
+                .WithRequired(i => i.Producto);
 
             base.OnModelCreating(modelBuilder);
         }

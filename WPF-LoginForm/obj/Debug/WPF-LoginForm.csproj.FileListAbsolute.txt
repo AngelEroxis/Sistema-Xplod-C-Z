@@ -57,3 +57,5 @@ D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debu
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\RegistrarPagoWindow.baml
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\RegistrarPagoWindow.g.cs
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\WPF-Logi.5D64F34A.Up2Date
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\VentasView.baml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\VentasView.g.cs

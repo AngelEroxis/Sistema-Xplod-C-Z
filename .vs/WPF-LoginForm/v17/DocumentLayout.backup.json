@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\registrarpagowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\registrarpagowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\ventasview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\ventasview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\registrarpagowindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\registrarpagowindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\ventasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\ventasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\clientesview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\clientesview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\admindashboard.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\admindashboard.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\clientesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\clientesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RegistrarPagoWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\RegistrarPagoWindow.xaml.cs",
-              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\RegistrarPagoWindow.xaml.cs",
-              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\RegistrarPagoWindow.xaml.cs",
-              "RelativeToolTip": "WPF-LoginForm\\View\\RegistrarPagoWindow.xaml.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "VentasView.xaml.cs",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\VentasView.xaml.cs",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\VentasView.xaml.cs",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\VentasView.xaml.cs",
+              "RelativeToolTip": "WPF-LoginForm\\View\\VentasView.xaml.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAIwFIAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T05:18:30.231Z",
+              "WhenOpened": "2025-06-10T05:59:39.253Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RegistrarPagoWindow.xaml",
-              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\RegistrarPagoWindow.xaml",
-              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\RegistrarPagoWindow.xaml",
-              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\RegistrarPagoWindow.xaml",
-              "RelativeToolTip": "WPF-LoginForm\\View\\RegistrarPagoWindow.xaml",
+              "DocumentIndex": 1,
+              "Title": "VentasView.xaml",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\VentasView.xaml",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\VentasView.xaml",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\VentasView.xaml",
+              "RelativeToolTip": "WPF-LoginForm\\View\\VentasView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-10T05:18:36.53Z",
+              "WhenOpened": "2025-06-10T05:59:18.271Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ClientesView.xaml.cs",
-              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ClientesView.xaml.cs",
-              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ClientesView.xaml.cs",
-              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ClientesView.xaml.cs",
-              "RelativeToolTip": "WPF-LoginForm\\View\\ClientesView.xaml.cs",
-              "ViewState": "AgIAALMAAAAAAAAAAAAYwMgAAAAJAAAAAAAAAA==",
+              "Title": "AdminDashboard.xaml.cs",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml.cs",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\AdminDashboard.xaml.cs",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml.cs",
+              "RelativeToolTip": "WPF-LoginForm\\View\\AdminDashboard.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCkAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T05:07:00.045Z",
+              "WhenOpened": "2025-06-10T05:58:18.132Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ClientesView.xaml",
-              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ClientesView.xaml",
-              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ClientesView.xaml",
-              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ClientesView.xaml",
-              "RelativeToolTip": "WPF-LoginForm\\View\\ClientesView.xaml",
+              "Title": "AdminDashboard.xaml",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\AdminDashboard.xaml",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml",
+              "RelativeToolTip": "WPF-LoginForm\\View\\AdminDashboard.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-10T05:06:15.519Z",
+              "WhenOpened": "2025-06-10T05:42:29.788Z",
               "EditorCaption": ""
             }
           ]
