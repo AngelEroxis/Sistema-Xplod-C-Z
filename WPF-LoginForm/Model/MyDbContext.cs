@@ -24,6 +24,8 @@ namespace WPF_LoginForm.Model
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Inventario> Inventarios { get; set; }
+        public DbSet<Proveedor> Proveedores { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

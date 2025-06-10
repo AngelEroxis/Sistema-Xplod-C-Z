@@ -70,6 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AuthService.cs" />
+    <Compile Include="Model\BoolToVisibilityConverter.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Credito.cs" />
     <Compile Include="Model\Cuota.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Model\MyDbContext.cs" />
     <Compile Include="Model\Pago.cs" />
     <Compile Include="Model\Producto.cs" />
+    <Compile Include="Model\Proveedor.cs" />
     <Compile Include="Model\SesionActual.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Model\UsuarioActivo.cs" />
@@ -98,8 +100,14 @@
     <Compile Include="View\GestionClientesView.xaml.cs">
       <DependentUpon>GestionClientesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\InventarioView.xaml.cs">
+      <DependentUpon>InventarioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductoWindow.xaml.cs">
+      <DependentUpon>ProductoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegistrarClienteWindow.xaml.cs">
       <DependentUpon>RegistrarClienteWindow.xaml</DependentUpon>
@@ -150,7 +158,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\InventarioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -34,7 +34,8 @@ namespace WPF_LoginForm.View
 
         private void GestionProductos_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abrir Gestión de Productos e Inventario");
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(new InventarioView());
         }
 
         private void GestionVentas_Click(object sender, RoutedEventArgs e)

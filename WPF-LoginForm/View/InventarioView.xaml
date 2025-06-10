@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="WPF_LoginForm.View.InventarioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#f4f6f9" Padding="20">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <!-- Encabezado -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <TextBlock Text="Gestión de Inventario" FontSize="24" FontWeight="Bold" Foreground="#2c3e50"/>
+            <Button Content="Agregar Producto" Margin="20,0,0,0"
+                    Padding="8,4" Background="#2980b9" Foreground="White"
+                    Click="BtnAgregarProducto_Click"/>
+        </StackPanel>
+
+        <!-- Filtro y Tabla -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <!-- Campo de búsqueda con placeholder simulado -->
+            <Grid Width="250" Height="30" Margin="0,0,10,0">
+                <TextBox x:Name="txtBuscar"
+                     VerticalAlignment="Center"
+                     TextChanged="txtBuscar_TextChanged"/>
+                <TextBlock Text="Filtrar por nombre..."
+                   Foreground="Gray"
+                   Margin="5,0,0,0"
+                   VerticalAlignment="Center"
+                   IsHitTestVisible="False"
+                   Visibility="{Binding IsBuscarVacio, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToVisibilityConverter}}"/>
+            </Grid>
+
+            <Button Content="Buscar" Width="80" Click="BtnBuscar_Click"/>
+            <Button Content="Limpiar filtro" Margin="10,0,0,0" Click="BtnLimpiar_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgInventario" AutoGenerateColumns="False" CanUserAddRows="False"
+                  RowBackground="White" AlternatingRowBackground="#e7ebf0"
+                  FontSize="14">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdProducto}" Width="60"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Proveedor"
+                                     Binding="{Binding Proveedor.Nombre}" Width="150"/>
+                <DataGridTextColumn Header="Stock" Binding="{Binding Inventario.StockActual}" Width="80"/>
+                <DataGridTextColumn Header="Precio" Binding="{Binding PrecioVenta}" Width="100"/>
+                <DataGridTemplateColumn Header="Acciones" Width="160">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="✏️" Width="40" Margin="5,0" 
+                                        Click="BtnEditar_Click"/>
+                                <Button Content="🗑️" Width="40" Margin="5,0" 
+                                        Click="BtnEliminar_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

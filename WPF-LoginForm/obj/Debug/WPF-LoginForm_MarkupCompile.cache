@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\App.xaml
-13-1776725487
+15-1423650371
 
-34-163853729
+38615961814
 181120570492
-MainWindow.xaml;View\AdminDashboard.xaml;View\ClientesView.xaml;View\DetalleClienteWindow.xaml;View\GestionClientesView.xaml;View\LoginView.xaml;View\RegistrarClienteWindow.xaml;View\RegistrarPagoWindow.xaml;View\UserManagementView.xaml;View\VendedorDashboard.xaml;View\VentaDetalleWindow.xaml;View\VentasRealizadasWindow.xaml;View\VentasView.xaml;
+MainWindow.xaml;View\AdminDashboard.xaml;View\ClientesView.xaml;View\DetalleClienteWindow.xaml;View\GestionClientesView.xaml;View\InventarioView.xaml;View\LoginView.xaml;View\ProductoWindow.xaml;View\RegistrarClienteWindow.xaml;View\RegistrarPagoWindow.xaml;View\UserManagementView.xaml;View\VendedorDashboard.xaml;View\VentaDetalleWindow.xaml;View\VentasRealizadasWindow.xaml;View\VentasView.xaml;
 
 False
 

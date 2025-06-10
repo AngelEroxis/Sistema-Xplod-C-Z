@@ -38,6 +38,7 @@ namespace WPF_LoginForm.Model
 
         // Propiedad de navegación
         public virtual Inventario Inventario { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
 
     }
 }
