@@ -7,6 +7,7 @@ using System.Windows;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Configuration;
+using System.Data.Entity;
 
 
 namespace WPF_LoginForm.Model
@@ -32,12 +33,14 @@ namespace WPF_LoginForm.Model
                     {
                         IdUsuario = (int)reader["id_usuario"],
                         NombreUsuario = reader["nombre_usuario"].ToString(),
-                        Rol = reader["rol"].ToString()
+                        Rol = reader["rol"].ToString(),
+                        IdVendedor = reader["id_vendedor"] != DBNull.Value ? (int)reader["id_vendedor"] : 0
                     };
                 }
 
                 return null;
             }
         }
+
     }
 }

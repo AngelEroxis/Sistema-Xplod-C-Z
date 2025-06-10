@@ -1,0 +1,32 @@
+﻿<Window x:Class="WPF_LoginForm.View.VentasRealizadasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ventas Realizadas" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen" Background="#f4f6f9">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Historial de Ventas" FontSize="24" FontWeight="Bold" Foreground="#2c3e50"/>
+
+        <DataGrid x:Name="dgVentas" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Venta" Binding="{Binding IdVenta}" Width="80"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="150"/>
+                <DataGridTextColumn Header="Método Pago" Binding="{Binding MetodoPago}" Width="120"/>
+                <DataGridTextColumn Header="Total (Bs)" Binding="{Binding Total}" Width="100"/>
+                <DataGridTextColumn Header="Vendedor" Binding="{Binding Vendedor.Nombre}" Width="150"/>
+                <DataGridTemplateColumn Header="Detalles" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Ver" Click="BtnVerDetalles_Click" Tag="{Binding IdVenta}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

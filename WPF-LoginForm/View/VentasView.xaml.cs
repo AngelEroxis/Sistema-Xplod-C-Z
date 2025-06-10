@@ -80,7 +80,7 @@ namespace WPF_LoginForm.View
 
         private void ActualizarTotal()
         {
-            txtTotalVenta.Text = carrito.Sum(c => c.Subtotal).ToString("C");
+            txtTotalVenta.Text = $"Bs {carrito.Sum(c => c.Subtotal):N2}";
         }
 
         private void BtnRealizarVenta_Click(object sender, RoutedEventArgs e)
@@ -90,6 +90,12 @@ namespace WPF_LoginForm.View
                 MessageBox.Show("Agrega productos al carrito.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            if (cbMetodoPago.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione un método de pago.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
 
             using (var ctx = new MyDbContext())
             {
@@ -97,9 +103,10 @@ namespace WPF_LoginForm.View
                 {
                     Fecha = DateTime.Now,
                     Total = carrito.Sum(c => c.Subtotal),
-                    MetodoPago = "Efectivo", // Puedes agregar elección más tarde
+                    MetodoPago = ((ComboBoxItem)cbMetodoPago.SelectedItem)?.Content?.ToString() ?? "Efectivo",
                     IdCliente = null, // Esta venta no es a crédito
-                    IdVendedor = /* obtén el vendedor actual */ 1
+                    IdVendedor = SesionActual.UsuarioLogueado.IdVendedor ?? 0
+
                 };
                 ctx.Ventas.Add(venta);
                 ctx.SaveChanges();
@@ -131,6 +138,17 @@ namespace WPF_LoginForm.View
             ActualizarTotal();
             CargarProductos();
         }
+        private void BtnLimpiarCarrito_Click(object sender, RoutedEventArgs e)
+        {
+            carrito.Clear();
+            dgCarrito.Items.Refresh();
+            ActualizarTotal();
+        }
 
+        private void BtnVerVentas_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new VentasRealizadasWindow();
+            ventana.ShowDialog();
+        }
     }
 }

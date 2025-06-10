@@ -57,6 +57,12 @@ namespace WPF_LoginForm.Model
                 .WithRequired(i => i.Producto);
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<DetalleVenta>()
+                .HasRequired(dv => dv.Venta)
+                .WithMany(v => v.DetalleVentas)
+                .HasForeignKey(dv => dv.IdVenta); // Usa el nombre real de tu FK
+
         }
     }
 }

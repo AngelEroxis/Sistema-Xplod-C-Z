@@ -80,6 +80,7 @@
     <Compile Include="Model\MyDbContext.cs" />
     <Compile Include="Model\Pago.cs" />
     <Compile Include="Model\Producto.cs" />
+    <Compile Include="Model\SesionActual.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Model\UsuarioActivo.cs" />
     <Compile Include="Model\Vendedor.cs" />
@@ -111,6 +112,12 @@
     </Compile>
     <Compile Include="View\VendedorDashboard.xaml.cs">
       <DependentUpon>VendedorDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VentaDetalleWindow.xaml.cs">
+      <DependentUpon>VentaDetalleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VentasRealizadasWindow.xaml.cs">
+      <DependentUpon>VentasRealizadasWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\VentasView.xaml.cs">
       <DependentUpon>VentasView.xaml</DependentUpon>
@@ -160,6 +167,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\VendedorDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VentaDetalleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VentasRealizadasWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

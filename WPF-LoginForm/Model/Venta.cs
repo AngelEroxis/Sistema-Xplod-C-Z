@@ -31,6 +31,7 @@ namespace WPF_LoginForm.Model
         public decimal Total { get; set; }
 
         public virtual Cliente Cliente { get; set; }
+        public virtual Vendedor Vendedor { get; set; }
         public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
     }
 }

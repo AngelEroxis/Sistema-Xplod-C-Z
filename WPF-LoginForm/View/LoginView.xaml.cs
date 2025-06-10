@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_LoginForm.Model;
-
 namespace WPF_LoginForm.View
 {
     /// <summary>
@@ -51,6 +50,8 @@ namespace WPF_LoginForm.View
 
             if (user != null)
             {
+                SesionActual.UsuarioLogueado = AuthService.Login(username, password);
+
                 if (user.Rol == "Administrador")
                 {
                     var adminWindow = new AdminDashboard();
