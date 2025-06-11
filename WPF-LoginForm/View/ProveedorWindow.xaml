@@ -1,0 +1,37 @@
+﻿<Window x:Class="WPF_LoginForm.View.ProveedorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestión de Proveedores" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Tabla de proveedores -->
+        <DataGrid x:Name="dgProveedores" Grid.Row="0" AutoGenerateColumns="False"
+                  CanUserAddRows="False" SelectionMode="Single"
+                  Margin="0,0,0,10" SelectionChanged="dgProveedores_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdProveedor}" Width="50"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Contacto" Binding="{Binding Contacto}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Formulario -->
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Text="Nombre del Proveedor:" FontWeight="Bold"/>
+            <TextBox x:Name="txtNombre" Margin="0,5,0,10"/>
+
+            <TextBlock Text="Contacto:" FontWeight="Bold"/>
+            <TextBox x:Name="txtContacto" Margin="0,5,0,10"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Guardar" Width="100" Click="BtnGuardar_Click" Background="#27ae60" Foreground="White"/>
+                <Button Content="Cancelar" Width="100" Margin="10,0,0,0" Click="BtnCancelar_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

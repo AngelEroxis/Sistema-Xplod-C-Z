@@ -25,12 +25,13 @@ namespace WPF_LoginForm.Model
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Inventario> Inventarios { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
+        public DbSet<Compra> Compras { get; set; }
+        public DbSet<DetalleCompra> DetalleCompras { get; set; }
 
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Configurar relaciones
             modelBuilder.Entity<Cliente>()
                 .HasMany(c => c.Creditos)
                 .WithRequired(cr => cr.Cliente)
@@ -51,20 +52,17 @@ namespace WPF_LoginForm.Model
                 .WithMany()
                 .HasForeignKey(dv => dv.IdProducto);
 
-            base.OnModelCreating(modelBuilder);
-
-            // Relación uno a uno entre Producto e Inventario
             modelBuilder.Entity<Producto>()
                 .HasOptional(p => p.Inventario)
                 .WithRequired(i => i.Producto);
 
+            modelBuilder.Entity<DetalleCompra>()
+                .HasRequired(dc => dc.Compra)
+                .WithMany(c => c.DetalleCompras)
+                .HasForeignKey(dc => dc.IdCompra);
+
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<DetalleVenta>()
-                .HasRequired(dv => dv.Venta)
-                .WithMany(v => v.DetalleVentas)
-                .HasForeignKey(dv => dv.IdVenta); // Usa el nombre real de tu FK
-
         }
+
     }
 }

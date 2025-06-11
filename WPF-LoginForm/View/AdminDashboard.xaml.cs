@@ -52,7 +52,8 @@ namespace WPF_LoginForm.View
 
         private void GestionCompras_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abrir Gestión de Compras");
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(new ComprasView());
         }
 
         private void GestionUsuarios_Click(object sender, RoutedEventArgs e)

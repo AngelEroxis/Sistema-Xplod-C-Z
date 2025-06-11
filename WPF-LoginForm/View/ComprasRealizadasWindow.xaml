@@ -1,0 +1,49 @@
+﻿<Window x:Class="WPF_LoginForm.View.ComprasRealizadasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Compras Realizadas" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen" Background="#f4f6f9">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- 0 -->
+            <RowDefinition Height="*"/>
+            <!-- 1 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 2 -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Historial de Compras" FontSize="24" FontWeight="Bold" Foreground="#2c3e50"/>
+
+        <DataGrid x:Name="dgCompras" Grid.Row="1"
+                  AutoGenerateColumns="False" CanUserAddRows="False"
+                  IsReadOnly="True" SelectionMode="Single"
+                  SelectionChanged="dgCompras_SelectionChanged"
+                  RowBackground="White" AlternatingRowBackground="#e7ebf0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Compra" Binding="{Binding IdCompra}" Width="100"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=d}" Width="150"/>
+                <DataGridTextColumn Header="Proveedor" Binding="{Binding Proveedor.Nombre}" Width="200"/>
+                <DataGridTextColumn Header="Total (Bs)" Binding="{Binding Total, StringFormat=N2}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Name="btnVerDetalles" Content="Ver Detalles" Click="BtnVerDetalles_Click" Margin="5" Padding="10,5"/>
+            <Button Name="btnGenerarPdf" Content="Generar PDF" Click="BtnGenerarPdf_Click" Margin="5" Padding="10,5"/>
+        </StackPanel>
+
+
+        <DataGrid x:Name="dgDetalleCompra" Grid.Row="3" Margin="0,10,0,0"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  RowBackground="White" AlternatingRowBackground="#e7ebf0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Producto" Binding="{Binding Producto.Nombre}" Width="200"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="100"/>
+                <DataGridTextColumn Header="Precio Unit." Binding="{Binding PrecioUnitario, StringFormat=N2}" Width="120"/>
+                <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat=N2}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
