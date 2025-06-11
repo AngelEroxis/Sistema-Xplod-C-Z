@@ -35,6 +35,7 @@ namespace WPF_LoginForm.Model
 
         public virtual Cliente Cliente { get; set; }
 
+
         // Propiedad calculada para la cuota mensual
         [NotMapped]
         public decimal CuotaMensual

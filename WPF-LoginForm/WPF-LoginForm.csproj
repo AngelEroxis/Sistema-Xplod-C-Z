@@ -110,6 +110,7 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -185,6 +186,9 @@
     <Compile Include="View\AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AsignarCreditoWindow.xaml.cs">
+      <DependentUpon>AsignarCreditoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientesView.xaml.cs">
       <DependentUpon>ClientesView.xaml</DependentUpon>
     </Compile>
@@ -218,6 +222,9 @@
     <Compile Include="View\RegistrarPagoWindow.xaml.cs">
       <DependentUpon>RegistrarPagoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UbicacionWindow.xaml.cs">
+      <DependentUpon>UbicacionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserManagementView.xaml.cs">
       <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
@@ -246,6 +253,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AdminDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AsignarCreditoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -290,6 +301,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegistrarPagoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UbicacionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

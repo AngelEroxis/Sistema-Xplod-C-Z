@@ -1,0 +1,36 @@
+﻿<Window x:Class="WPF_LoginForm.View.UbicacionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ubicaciones de Inventario" Height="450" Width="600" WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Agregar Ubicación" Background="#2980b9" Foreground="White" Click="BtnAgregar_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgUbicaciones" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False"
+                  RowBackground="White" AlternatingRowBackground="#ecf0f1" FontSize="14">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="*"/>
+                <DataGridTextColumn Header="Productos" Width="250"
+                    Binding="{Binding ProductosResumen}"/>
+                <DataGridTemplateColumn Header="Acciones" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="✏️" Width="40" Margin="5,0"
+                                        Click="BtnEditar_Click"/>
+                                <Button Content="🗑️" Width="40" Margin="5,0"
+                                        Click="BtnEliminar_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

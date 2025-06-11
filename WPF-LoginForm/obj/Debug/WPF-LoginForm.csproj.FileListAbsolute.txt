@@ -132,3 +132,7 @@ D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debu
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\BouncyCastle.Cryptography.xml
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\itextsharp.xml
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\ProveedorWindow.baml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\UbicacionWindow.baml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\UbicacionWindow.g.cs
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\AsignarCreditoWindow.baml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\AsignarCreditoWindow.g.cs

@@ -105,6 +105,12 @@ namespace WPF_LoginForm.View
         {
             CargarInventario(txtBuscar.Text);
         }
+        private void BtnGestionarUbicaciones_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new UbicacionWindow();
+            win.ShowDialog();
+            CargarInventario(); // Para refrescar posibles cambios
+        }
 
     }
 }

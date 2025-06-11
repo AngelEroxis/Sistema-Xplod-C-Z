@@ -12,6 +12,10 @@
             <Button Content="Agregar Producto" Margin="20,0,0,0"
                     Padding="8,4" Background="#2980b9" Foreground="White"
                     Click="BtnAgregarProducto_Click"/>
+            <Button Content="Gestionar Almaceenes"
+                    Margin="10,0,0,0"
+                    Padding="8,4" Background="#27ae60" Foreground="White"
+                    Click="BtnGestionarUbicaciones_Click"/>
         </StackPanel>
 
         <!-- Filtro y Tabla -->

@@ -58,13 +58,16 @@ namespace WPF_LoginForm.View
             {
                 btnEditarCliente.IsEnabled = true;
                 btnEliminarCliente.IsEnabled = true;
-                btnVerDetalles.IsEnabled = true; // Habilitar el botón de ver detalles
+                btnVerDetalles.IsEnabled = true;
+                btnAsignarCredito.IsEnabled = true;
+
             }
             else
             {
                 btnEditarCliente.IsEnabled = false;
                 btnEliminarCliente.IsEnabled = false;
-                btnVerDetalles.IsEnabled = false; // Deshabilitar el botón de ver detalles
+                btnVerDetalles.IsEnabled = false; 
+                btnAsignarCredito.IsEnabled = false;
             }
         }
 
@@ -197,6 +200,21 @@ namespace WPF_LoginForm.View
             {
                 MessageBox.Show($"Error al abrir los detalles del cliente: {ex.Message}",
                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void BtnAsignarCredito_Click(object sender, RoutedEventArgs e)
+        {
+            var clienteSeleccionado = dgClientes.SelectedItem as Cliente;
+
+            if (clienteSeleccionado != null)
+            {
+                var ventanaAsignar = new AsignarCreditoWindow(clienteSeleccionado);
+                if (ventanaAsignar.ShowDialog() == true)
+                {
+                    CargarDatosClientes(); // Refresca datos con nuevo crédito
+                    MessageBox.Show("Crédito asignado correctamente.", "Éxito",
+                                   MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 
