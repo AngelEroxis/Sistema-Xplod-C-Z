@@ -222,6 +222,9 @@
     <Compile Include="View\RegistrarPagoWindow.xaml.cs">
       <DependentUpon>RegistrarPagoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ReportesView.xaml.cs">
+      <DependentUpon>ReportesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UbicacionWindow.xaml.cs">
       <DependentUpon>UbicacionWindow.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,9 @@
     </Compile>
     <Compile Include="View\VendedorDashboard.xaml.cs">
       <DependentUpon>VendedorDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VendedorManagementView.xaml.cs">
+      <DependentUpon>VendedorManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\VentaDetalleWindow.xaml.cs">
       <DependentUpon>VentaDetalleWindow.xaml</DependentUpon>
@@ -304,6 +310,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ReportesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UbicacionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\VendedorDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VendedorManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

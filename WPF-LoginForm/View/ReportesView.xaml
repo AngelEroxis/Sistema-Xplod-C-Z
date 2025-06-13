@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="WPF_LoginForm.View.ReportesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_LoginForm.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900">
+    <Border Background="#f4f6f9" Padding="30">
+        <DockPanel LastChildFill="True">
+
+            <!-- Encabezado -->
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
+                <TextBlock Text="📊 Reportes del Sistema"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="#2c3e50"
+                           Margin="0,0,0,10"/>
+                <Separator Background="#bdc3c7" Height="1"/>
+            </StackPanel>
+
+            <!-- Contenido Principal -->
+            <TabControl FontSize="14"
+                        FontWeight="SemiBold"
+                        Background="White"
+                        BorderBrush="#dcdcdc"
+                        BorderThickness="1"
+                        Padding="10"
+                        Margin="0">
+
+                <!-- Clientes -->
+                <TabItem Header="👥 Clientes">
+                    <DockPanel>
+                        <Button Content="⬇ Exportar PDF"
+                                Click="ExportarClientes_Click"
+                                Width="180"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,0,10"
+                                Background="#27ae60"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                DockPanel.Dock="Top"/>
+
+                        <DataGrid x:Name="dgClientesRpt"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  Margin="0"
+                                  Background="White"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"/>
+                    </DockPanel>
+                </TabItem>
+
+                <!-- Ventas -->
+                <TabItem Header="💰 Ventas">
+                    <DockPanel>
+                        <Button Content="⬇ Exportar PDF"
+                                Click="ExportarVentas_Click"
+                                Width="180"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,0,10"
+                                Background="#2980b9"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                DockPanel.Dock="Top"/>
+
+                        <DataGrid x:Name="dgVentasRpt"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  Margin="0"
+                                  Background="White"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"/>
+                    </DockPanel>
+                </TabItem>
+
+                <!-- Créditos Pendientes -->
+                <TabItem Header="📄 Créditos Pendientes">
+                    <DockPanel>
+                        <Button Content="⬇ Exportar PDF"
+                                Click="ExportarCreditos_Click"
+                                Width="180"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,0,10"
+                                Background="#8e44ad"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                DockPanel.Dock="Top"/>
+
+                        <DataGrid x:Name="dgCreditosRpt"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  Margin="0"
+                                  Background="White"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"/>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Border>
+</UserControl>

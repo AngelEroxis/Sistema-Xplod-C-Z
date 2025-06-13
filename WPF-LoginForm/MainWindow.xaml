@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:WPF_LoginForm"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" BlurRadius="20" ShadowDepth="0" Color="#66000000" />
+    </Window.Resources>
+
     <Grid>
         <ContentControl x:Name="Contenido"/>
 

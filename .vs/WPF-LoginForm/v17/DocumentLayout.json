@@ -3,7 +3,23 @@
   "WorkspaceRootPath": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\comprasrealizadaswindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\comprasrealizadaswindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\comprasrealizadaswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\comprasrealizadaswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\comprasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\comprasview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\comprasview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\comprasview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -19,6 +35,56 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ComprasRealizadasWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "RelativeToolTip": "WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAYwGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T04:12:04.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ComprasRealizadasWindow.xaml",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml",
+              "RelativeToolTip": "WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-13T04:11:44.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ComprasView.xaml.cs",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasView.xaml.cs",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ComprasView.xaml.cs",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasView.xaml.cs",
+              "RelativeToolTip": "WPF-LoginForm\\View\\ComprasView.xaml.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAYwJYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T04:11:19.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ComprasView.xaml",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasView.xaml",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ComprasView.xaml",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasView.xaml",
+              "RelativeToolTip": "WPF-LoginForm\\View\\ComprasView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-13T04:11:04.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AdminDashboard.xaml",
               "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml",
               "RelativeDocumentMoniker": "WPF-LoginForm\\View\\AdminDashboard.xaml",

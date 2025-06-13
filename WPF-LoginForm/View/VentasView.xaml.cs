@@ -64,19 +64,39 @@ namespace WPF_LoginForm.View
         {
             if (dgProductosVenta.SelectedItem is Producto prod)
             {
+                // Verificar si el producto ya está en el carrito
                 var item = carrito.FirstOrDefault(c => c.Producto.IdProducto == prod.IdProducto);
+
+                // Si el producto no está en el carrito, lo agregamos
                 if (item == null)
                 {
-                    carrito.Add(new CarritoItem { Producto = prod, Cantidad = 1 });
+                    carrito.Add(new CarritoItem
+                    {
+                        Producto = prod,
+                        Cantidad = 1,
+                        PrecioUnitario = prod.PrecioVenta // Asignamos el precio de venta al carrito
+                    });
                 }
-                else if (prod.Inventario.StockActual > item.Cantidad)
+                else
                 {
-                    item.Cantidad++;
+                    // Si el producto ya está en el carrito, solo incrementamos la cantidad, pero no debe exceder el stock disponible
+                    if (item.Cantidad < prod.Inventario.StockActual)
+                    {
+                        item.Cantidad++; // Incrementamos la cantidad en 1
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay suficiente stock para agregar más unidades de este producto.", "Stock insuficiente", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return; // Salimos del método si no hay suficiente stock
+                    }
                 }
-                dgCarrito.Items.Refresh();
-                ActualizarTotal();
+
+                dgCarrito.Items.Refresh(); // Refrescamos el carrito para mostrar la actualización
+                ActualizarTotal(); // Actualizamos el total de la venta
             }
         }
+
+
 
         private void ActualizarTotal()
         {

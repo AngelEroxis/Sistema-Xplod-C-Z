@@ -136,3 +136,7 @@ D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debu
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\UbicacionWindow.g.cs
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\AsignarCreditoWindow.baml
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\AsignarCreditoWindow.g.cs
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\ReportesView.g.cs
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\ReportesView.baml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\VendedorManagementView.baml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\VendedorManagementView.g.cs

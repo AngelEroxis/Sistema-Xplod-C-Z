@@ -144,7 +144,7 @@
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"><Run Language="es-es" Text="Xplod C&amp;Z"/></TextBlock>
 
-                    <TextBlock Text="Learning to code is useful no matter what your career ambitions are."
+                    <TextBlock Text="Electrodomésticos Xplod C*Z – Calidad y confianza para tu casa."
                                Foreground="LightGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -210,7 +210,7 @@
 
                     <Button x:Name="btnLogin"                          
                             BorderThickness="0"
-                            Content="LOG IN"
+                            Content="Iniciar Sesion"
                             Foreground="White"
                             FontSize="12"
                             FontFamily="Montserrat"
@@ -245,19 +245,7 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
 
-                        <TextBlock Text="Forgot Password?"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"/>
-
-                        <TextBlock Text="Reset"
-                               Foreground="White"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Cursor="Hand"
-                               Margin="8,0,0,0"/>
+                   
 
                     </StackPanel>
 

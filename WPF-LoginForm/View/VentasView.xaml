@@ -2,74 +2,137 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Background="#f4f6f9" Padding="20">
+
+    <UserControl.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Panel de productos -->
-        <StackPanel Grid.Column="0">
-            <TextBlock Text="Productos Disponibles" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Segoe UI"/>
-            <DockPanel Margin="0,0,0,10">
-                <Grid Width="200" Height="30">
-                    <TextBox x:Name="txtBuscarProducto"
-             VerticalAlignment="Center"
-             TextChanged="TxtBuscarProducto_TextChanged"/>
-                    <TextBlock x:Name="txtPlaceholder"
-               Text="Buscar..."
-               Foreground="Gray"
-               Margin="5,0,0,0"
-               VerticalAlignment="Center"
-               IsHitTestVisible="False"
-               Visibility="Visible"/>
-                </Grid>
+        <StackPanel Grid.Column="0" Margin="0,0,20,0">
+            <TextBlock Text="🛒 Productos Disponibles"
+                       FontSize="24" FontWeight="Bold"
+                       Margin="0,0,0,10" Foreground="#2c3e50"/>
 
-            </DockPanel>
-            <DataGrid x:Name="dgProductosVenta" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
-                      SelectionMode="Single" Height="400">
+            <!-- Filtro de productos -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Grid Width="250" Height="30">
+                    <TextBox x:Name="txtBuscarProducto"
+                             VerticalAlignment="Center"
+                             Padding="5,2"
+                             TextChanged="TxtBuscarProducto_TextChanged"/>
+                    <TextBlock x:Name="txtPlaceholder"
+                               Text="🔍 Buscar..."
+                               Foreground="Gray"
+                               Margin="8,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False"
+                               Visibility="Visible"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Lista de productos -->
+            <DataGrid x:Name="dgProductosVenta"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      AlternatingRowBackground="#ecf0f1"
+                      RowBackground="White"
+                      FontSize="14"
+                      Height="400">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Producto" Binding="{Binding Nombre}" Width="*"/>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding Nombre}" Width="*" />
                     <DataGridTextColumn Header="Precio" Binding="{Binding PrecioVenta}" Width="100"/>
                     <DataGridTextColumn Header="Stock" Binding="{Binding Inventario.StockActual}" Width="80"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Agregar al carrito" Click="BtnAgregarAlCarrito_Click" Margin="0,10,0,0" Width="150"/>
+
+            <Button Content="➕ Agregar al carrito"
+                    Width="180"
+                    Background="#2980b9"
+                    Style="{StaticResource ModernButtonStyle}"
+                    Click="BtnAgregarAlCarrito_Click"/>
         </StackPanel>
 
-        <!-- Carrito -->
-        <StackPanel Grid.Column="1" Margin="20,0,0,0">
-            <TextBlock Text="Carrito de Compra" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
-            <DataGrid x:Name="dgCarrito" AutoGenerateColumns="False" CanUserAddRows="False" Height="300">
+        <!-- Carrito de compra -->
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="🧺 Carrito de Compra"
+                       FontSize="24" FontWeight="Bold"
+                       Margin="0,0,0,10" Foreground="#2c3e50"/>
+
+            <DataGrid x:Name="dgCarrito"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      AlternatingRowBackground="#ecf0f1"
+                      RowBackground="White"
+                      FontSize="14"
+                      Height="300">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Producto" Binding="{Binding Producto.Nombre}" Width="*"/>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding Producto.Nombre}" Width="*" />
                     <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="80"/>
-                    <DataGridTextColumn Header="Precio U." Binding="{Binding PrecioUnitario}" Width="80"/>
+                    <DataGridTextColumn Header="Precio U." Binding="{Binding PrecioUnitario}" Width="90"/>
                     <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal}" Width="100"/>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <!-- Total -->
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBlock Text="Total:" FontSize="18" FontWeight="Bold"/>
-                <TextBlock x:Name="txtTotalVenta" Text="0" FontSize="18" FontWeight="Bold" Margin="5,0,0,0"/>
+                <TextBlock Text="Total: " FontSize="18" FontWeight="Bold" Foreground="#2c3e50"/>
+                <TextBlock x:Name="txtTotalVenta" Text="0"
+                           FontSize="18" FontWeight="Bold"
+                           Foreground="#27ae60" Margin="5,0,0,0"/>
             </StackPanel>
-            <Button Content="Realizar Venta" Click="BtnRealizarVenta_Click" Margin="0,20,0,0" Width="150" Background="#27ae60" Foreground="White"/>
-            <Button Content="Ver Ventas Realizadas"
-                Click="BtnVerVentas_Click"
-                Margin="10,20,0,0"
-                Width="150"
-                Background="#3498db"
-                Foreground="White"/>
-            <Button Content="Limpiar Carrito"
-                Click="BtnLimpiarCarrito_Click"
-                Margin="10,20,0,0"
-                Width="150"/>
-            <TextBlock Text="Método de Pago:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <ComboBox x:Name="cbMetodoPago" Width="150">
-                <ComboBoxItem Content="Efectivo"/>
-                <ComboBoxItem Content="Transferencia"/>
-                <ComboBoxItem Content="QR"/>
-            </ComboBox>
+
+            <!-- Botones -->
+            <WrapPanel Margin="0,20,0,0">
+                <Button Content="💵 Realizar Venta"
+                        Width="150"
+                        Background="#27ae60"
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnRealizarVenta_Click"/>
+                <Button Content="📄 Ver Ventas"
+                        Width="150"
+                        Background="#3498db"
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnVerVentas_Click"/>
+                <Button Content="🧹 Limpiar"
+                        Width="150"
+                        Background="#95a5a6"
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnLimpiarCarrito_Click"/>
+            </WrapPanel>
+
+            <!-- Método de pago -->
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Método de Pago:" FontWeight="Bold" Foreground="#2c3e50" Margin="0,0,0,5"/>
+                <ComboBox x:Name="cbMetodoPago" Width="150">
+                    <ComboBoxItem Content="Efectivo"/>
+                    <ComboBoxItem Content="Transferencia"/>
+                    <ComboBoxItem Content="QR"/>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
-        
     </Grid>
 </UserControl>

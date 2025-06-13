@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\App.xaml
-202004806875
+22381912309
 
-471137233994
+49-1355957316
 50285993256
-MainWindow.xaml;View\AdminDashboard.xaml;View\AsignarCreditoWindow.xaml;View\ClientesView.xaml;View\ComprasRealizadasWindow.xaml;View\ComprasView.xaml;View\DetalleClienteWindow.xaml;View\GestionClientesView.xaml;View\InventarioView.xaml;View\LoginView.xaml;View\ProductoWindow.xaml;View\ProveedorWindow.xaml;View\RegistrarClienteWindow.xaml;View\RegistrarPagoWindow.xaml;View\UbicacionWindow.xaml;View\UserManagementView.xaml;View\VendedorDashboard.xaml;View\VentaDetalleWindow.xaml;View\VentasRealizadasWindow.xaml;View\VentasView.xaml;
+MainWindow.xaml;View\AdminDashboard.xaml;View\AsignarCreditoWindow.xaml;View\ClientesView.xaml;View\ComprasRealizadasWindow.xaml;View\ComprasView.xaml;View\DetalleClienteWindow.xaml;View\GestionClientesView.xaml;View\InventarioView.xaml;View\LoginView.xaml;View\ProductoWindow.xaml;View\ProveedorWindow.xaml;View\RegistrarClienteWindow.xaml;View\RegistrarPagoWindow.xaml;View\ReportesView.xaml;View\UbicacionWindow.xaml;View\UserManagementView.xaml;View\VendedorDashboard.xaml;View\VendedorManagementView.xaml;View\VentaDetalleWindow.xaml;View\VentasRealizadasWindow.xaml;View\VentasView.xaml;
 
-True
+False
 

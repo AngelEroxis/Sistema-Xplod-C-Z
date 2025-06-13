@@ -42,7 +42,7 @@
                 <DataGridTextColumn Header="Producto" Binding="{Binding Producto.Nombre}" Width="200"/>
                 <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="100"/>
                 <DataGridTextColumn Header="Precio Unit." Binding="{Binding PrecioUnitario, StringFormat=N2}" Width="120"/>
-                <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat=N2}" Width="120"/>
+                <DataGridTextColumn Header="Subtotal" Binding="{Binding SubTotal, StringFormat=N2}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

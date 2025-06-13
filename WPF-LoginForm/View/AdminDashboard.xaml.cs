@@ -10,7 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_LoginForm.Model;
 
 namespace WPF_LoginForm.View
 {
@@ -22,6 +24,11 @@ namespace WPF_LoginForm.View
         public AdminDashboard()
         {
             InitializeComponent();
+            if (SesionActual.UsuarioLogueado != null)
+            {
+                txtBienvenida.Text = $"Bienvenido {SesionActual.UsuarioLogueado.NombreUsuario}";
+                txtRol.Text = $"Rol: {SesionActual.UsuarioLogueado.Rol}";
+            }
         }
         // Aquí agregamos los manejadores (event handlers)
         private void GestionClientes_Click(object sender, RoutedEventArgs e)
@@ -31,6 +38,16 @@ namespace WPF_LoginForm.View
             ContentGrid.Children.Clear();
             ContentGrid.Children.Add(clientesView);
         }
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            AdminDashboard adminDashboard = new AdminDashboard();
+            adminDashboard.Show();
+
+            // Opcional: cerrar la ventana actual si quieres cambiar de ventana
+            this.Close();
+
+        }
+
 
         private void GestionProductos_Click(object sender, RoutedEventArgs e)
         {
@@ -47,7 +64,8 @@ namespace WPF_LoginForm.View
 
         private void GestionReportes_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abrir Generación de Reportes");
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(new ReportesView());
         }
 
         private void GestionCompras_Click(object sender, RoutedEventArgs e)
@@ -75,5 +93,6 @@ namespace WPF_LoginForm.View
             // Cerrar la ventana actual
             this.Close();
         }
+
     }
 }

@@ -37,7 +37,7 @@ namespace WPF_LoginForm.View
                 using (var context = new MyDbContext())
                 {
                     var clientes = context.Clientes
-                        .Include(c => c.Creditos) // Incluir los créditos relacionados
+                        .Include(c => c.Creditos)
                         .ToList();
 
                     dgClientes.ItemsSource = clientes;
@@ -78,7 +78,7 @@ namespace WPF_LoginForm.View
                 var registrarWindow = new RegistrarClienteWindow();
                 if (registrarWindow.ShowDialog() == true)
                 {
-                    CargarDatosClientes(); // Refrescar la tabla
+                    CargarDatosClientes();
                     MessageBox.Show("Cliente agregado correctamente.", "Éxito",
                                    MessageBoxButton.OK, MessageBoxImage.Information);
                 }

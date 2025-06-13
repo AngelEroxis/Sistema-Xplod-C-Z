@@ -14,6 +14,7 @@ namespace WPF_LoginForm.Model
         public decimal PrecioUnitario { get; set; }
 
         public decimal Subtotal => Cantidad * PrecioUnitario;
+
     }
 
 }

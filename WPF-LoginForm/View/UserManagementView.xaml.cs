@@ -200,5 +200,13 @@ namespace WPF_LoginForm.View
             cmbVendedor.SelectedIndex = -1;
 
         }
+        private void BtnGestionarVendedores_Click(object sender, RoutedEventArgs e)
+        {
+            VendedorManagementView ventanaVendedores = new VendedorManagementView();
+            ventanaVendedores.ShowDialog();
+            // Recarga vendedores en el combo tras cerrar la ventana
+            CargarVendedores();
+        }
+
     }
 }
