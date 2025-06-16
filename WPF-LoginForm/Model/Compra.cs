@@ -26,6 +26,8 @@ namespace WPF_LoginForm.Model
 
         public virtual Proveedor Proveedor { get; set; }
 
+
+
         public virtual ICollection<DetalleCompra> DetalleCompras { get; set; }
 
         public Compra()

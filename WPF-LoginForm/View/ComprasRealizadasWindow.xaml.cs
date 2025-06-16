@@ -67,7 +67,7 @@ namespace WPF_LoginForm.View
             try
             {
                 var nombreArchivo = $"Compra_{compra.IdCompra}_{DateTime.Now:yyyyMMddHHmmss}.pdf";
-                var ruta = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), nombreArchivo);
+                var ruta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), nombreArchivo);
 
                 using (var fs = new FileStream(ruta, FileMode.Create))
                 using (var doc = new Document(PageSize.A4, 25, 25, 30, 30))
@@ -75,37 +75,154 @@ namespace WPF_LoginForm.View
                     PdfWriter.GetInstance(doc, fs);
                     doc.Open();
 
-                    doc.Add(new Paragraph($"Detalle de Compra #{compra.IdCompra}") { Alignment = Element.ALIGN_CENTER, SpacingAfter = 15f });
-                    doc.Add(new Paragraph($"Proveedor: {compra.Proveedor.Nombre}"));
-                    doc.Add(new Paragraph($"Fecha:      {compra.Fecha:dd/MM/yyyy}"));
-                    doc.Add(new Paragraph($"Total Bs:   {compra.Total:N2}"));
-                    doc.Add(new Paragraph(" "));
-
-                    var tabla = new PdfPTable(4) { WidthPercentage = 100 };
-                    tabla.AddCell("Producto");
-                    tabla.AddCell("Cantidad");
-                    tabla.AddCell("Precio Unit.");
-                    tabla.AddCell("Subtotal");
-
-                    foreach (var det in compra.DetalleCompras)
+                    // Encabezado
+                    var encabezadoTabla = new PdfPTable(2)
                     {
-                        tabla.AddCell(det.Producto.Nombre);
-                        tabla.AddCell(det.Cantidad.ToString());
-                        tabla.AddCell(det.PrecioUnitario.ToString("N2"));
-                        tabla.AddCell(det.SubTotal.ToString("N2"));
+                        WidthPercentage = 100
+                    };
+                    encabezadoTabla.SetWidths(new float[] { 50, 50 });
+
+                    encabezadoTabla.AddCell(new PdfPCell(new Phrase("Compra de Productos para Xplod C&Z", FontFactory.GetFont("Arial", 12, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_LEFT,
+                        Border = Rectangle.NO_BORDER
+                    });
+
+                    encabezadoTabla.AddCell(new PdfPCell(new Phrase(compra.Fecha.ToString("dd/MM/yyyy"), FontFactory.GetFont("Arial", 12, Font.NORMAL)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_RIGHT,
+                        Border = Rectangle.NO_BORDER
+                    });
+
+                    doc.Add(encabezadoTabla);
+                    doc.Add(new Paragraph("\n"));
+
+                    // Detalles de la compra
+                    var detallesCompra = new PdfPTable(2)
+                    {
+                        WidthPercentage = 100
+                    };
+                    detallesCompra.SetWidths(new float[] { 50, 50 });
+
+                    detallesCompra.AddCell(new PdfPCell(new Phrase($"Nro. Compra: {compra.IdCompra}", FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_LEFT,
+                        Border = Rectangle.NO_BORDER
+                    });
+
+                    detallesCompra.AddCell(new PdfPCell(new Phrase($"Proveedor: {compra.Proveedor.Nombre}", FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_LEFT,
+                        Border = Rectangle.NO_BORDER
+                    });
+
+                    detallesCompra.AddCell(new PdfPCell(new Phrase($"Contacto: {compra.Proveedor.Contacto}", FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_LEFT,
+                        Border = Rectangle.NO_BORDER
+                    });
+
+                    /*detallesCompra.AddCell(new PdfPCell(new Phrase($"Vendedor: {compra.Vendedor.Nombre}", FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_LEFT,
+                        Border = Rectangle.NO_BORDER
+                    });*/
+
+                    doc.Add(detallesCompra);
+                    doc.Add(new Paragraph("\n"));
+
+                    // Tabla de productos
+                    var tablaProductos = new PdfPTable(6)
+                    {
+                        WidthPercentage = 100
+                    };
+                    tablaProductos.SetWidths(new float[] { 10, 30, 20, 10, 15, 15 });
+
+                    tablaProductos.AddCell(new PdfPCell(new Phrase("Nro", FontFactory.GetFont("Arial", 10, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        BackgroundColor = BaseColor.LIGHT_GRAY
+                    });
+                    tablaProductos.AddCell(new PdfPCell(new Phrase("Producto", FontFactory.GetFont("Arial", 10, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        BackgroundColor = BaseColor.LIGHT_GRAY
+                    });
+                    tablaProductos.AddCell(new PdfPCell(new Phrase("Unidad Medida", FontFactory.GetFont("Arial", 10, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        BackgroundColor = BaseColor.LIGHT_GRAY
+                    });
+                    tablaProductos.AddCell(new PdfPCell(new Phrase("Cantidad", FontFactory.GetFont("Arial", 10, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        BackgroundColor = BaseColor.LIGHT_GRAY
+                    });
+                    tablaProductos.AddCell(new PdfPCell(new Phrase("Precio Unitario", FontFactory.GetFont("Arial", 10, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        BackgroundColor = BaseColor.LIGHT_GRAY
+                    });
+                    tablaProductos.AddCell(new PdfPCell(new Phrase("Total", FontFactory.GetFont("Arial", 10, Font.BOLD)))
+                    {
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        BackgroundColor = BaseColor.LIGHT_GRAY
+                    });
+
+                    decimal totalCompra = 0;
+                    int nro = 1;
+                    foreach (var detalle in compra.DetalleCompras)
+                    {
+                        tablaProductos.AddCell(new PdfPCell(new Phrase(nro.ToString(), FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                        {
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        });
+                        tablaProductos.AddCell(new PdfPCell(new Phrase(detalle.Producto.Nombre, FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                        {
+                            HorizontalAlignment = Element.ALIGN_LEFT
+                        });
+                        tablaProductos.AddCell(new PdfPCell(new Phrase(detalle.Producto.UnidadMedida, FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                        {
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        });
+                        tablaProductos.AddCell(new PdfPCell(new Phrase(detalle.Cantidad.ToString(), FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                        {
+                            HorizontalAlignment = Element.ALIGN_RIGHT
+                        });
+                        tablaProductos.AddCell(new PdfPCell(new Phrase(detalle.SubTotal.ToString("N2"), FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                        {
+                            HorizontalAlignment = Element.ALIGN_RIGHT
+                        });
+                        tablaProductos.AddCell(new PdfPCell(new Phrase((detalle.SubTotal * detalle.Cantidad).ToString("N2"), FontFactory.GetFont("Arial", 10, Font.NORMAL)))
+                        {
+                            HorizontalAlignment = Element.ALIGN_RIGHT
+                        });
+
+                        totalCompra += detalle.SubTotal * detalle.Cantidad;
+                        nro++;
                     }
 
-                    doc.Add(tabla);
+                    doc.Add(tablaProductos);
+                    doc.Add(new Paragraph("\n"));
+
+                    // Total de la compra
+                    var totalCompraParrafo = new Paragraph($"Total de la compra: {totalCompra:N2}", FontFactory.GetFont("Arial", 12, Font.BOLD))
+                    {
+                        Alignment = Element.ALIGN_RIGHT
+                    };
+                    doc.Add(totalCompraParrafo);
+
                     doc.Close();
                 }
 
-                MessageBox.Show($"PDF generado en: {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}", "PDF creado", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"PDF generado en: {ruta}", "PDF creado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al generar PDF: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
     }
 }

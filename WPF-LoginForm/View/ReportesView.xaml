@@ -28,51 +28,72 @@
                         Padding="10"
                         Margin="0">
 
+                
                 <!-- Clientes -->
                 <TabItem Header="👥 Clientes">
                     <DockPanel>
-                        <Button Content="⬇ Exportar PDF"
+
+                        <!-- Panel de filtros -->
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,0,0,10" VerticalAlignment="Center">
+                            <TextBox x:Name="txtBusquedaClientes"
+         Width="200"
+         Height="30"
+         Margin="0,0,10,0"
+         VerticalContentAlignment="Center"/>
+
+
+                            <Button Content="Filtrar"
+                                Width="100"
+                                Height="30"
+                                Margin="0,0,10,0"
+                                Click="BtnFiltrarClientes_Click"/>
+                            <Button Content="⬇ Exportar PDF"
                                 Click="ExportarClientes_Click"
                                 Width="180"
                                 Height="35"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,0,10"
                                 Background="#27ae60"
                                 Foreground="White"
-                                FontWeight="Bold"
-                                DockPanel.Dock="Top"/>
+                                FontWeight="Bold"/>
+                        </StackPanel>
 
+                        <!-- DataGrid -->
                         <DataGrid x:Name="dgClientesRpt"
-                                  AutoGenerateColumns="False"
-                                  IsReadOnly="True"
-                                  Margin="0"
-                                  Background="White"
-                                  HeadersVisibility="Column"
-                                  GridLinesVisibility="Horizontal"/>
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Margin="0"
+                  Background="White"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"/>
                     </DockPanel>
                 </TabItem>
 
                 <!-- Ventas -->
                 <TabItem Header="💰 Ventas">
                     <DockPanel>
-                        <Button Content="⬇ Exportar PDF"
-                                Click="ExportarVentas_Click"
-                                Width="180"
-                                Height="35"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,0,10"
-                                Background="#2980b9"
-                                Foreground="White"
-                                FontWeight="Bold"
-                                DockPanel.Dock="Top"/>
 
+                        <!-- Panel de filtros -->
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,0,0,10" VerticalAlignment="Center">
+                            <TextBlock Text="Desde:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dpFechaInicio" Width="120" Margin="0,0,10,0"/>
+                            <TextBlock Text="Hasta:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dpFechaFin" Width="120" Margin="0,0,10,0"/>
+                            <Button Content="⬇ Exportar PDF"
+                    Click="ExportarVentas_Click"
+                    Width="180"
+                    Height="35"
+                    Background="#2980b9"
+                    Foreground="White"
+                    FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <!-- DataGrid de ventas -->
                         <DataGrid x:Name="dgVentasRpt"
-                                  AutoGenerateColumns="False"
-                                  IsReadOnly="True"
-                                  Margin="0"
-                                  Background="White"
-                                  HeadersVisibility="Column"
-                                  GridLinesVisibility="Horizontal"/>
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Margin="0"
+                  Background="White"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"/>
                     </DockPanel>
                 </TabItem>
 

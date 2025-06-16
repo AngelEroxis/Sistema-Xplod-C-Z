@@ -41,6 +41,47 @@
             <Setter Property="Margin" Value="0,2"/>
             <Setter Property="FontWeight" Value="Normal"/>
         </Style>
+
+        <Style x:Key="PDFButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#D32F2F"/>
+            <!-- Rojo PDF -->
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="8"
+                        SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      RecognizesAccessKey="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#B71C1C"/>
+                    <!-- Rojo más oscuro -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#880E4F"/>
+                    <!-- Toque vino -->
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
     <Grid Margin="20">
@@ -88,6 +129,13 @@
                         </Style>
                     </Button.Style>
                 </Button>
+                <Button x:Name="BtnGenerarPDF" 
+                           Style="{StaticResource PDFButton}"
+                           Click="BtnGenerarPDF_Click"
+                           ToolTip="Generar contrato en PDF">
+                    📄 Generar PDF
+                </Button>
+
             </Grid>
         </Border>
 

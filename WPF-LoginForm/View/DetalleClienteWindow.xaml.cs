@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Primero, necesitas instalar el paquete NuGet iTextSharp
+// En Package Manager Console ejecuta: Install-Package iTextSharp
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +16,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using WPF_LoginForm.Model;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using Microsoft.Win32;
+using iTextSharpText = iTextSharp.text;
+using iTextSharpPdf = iTextSharp.text.pdf;
 
 namespace WPF_LoginForm.View
 {
@@ -30,6 +39,8 @@ namespace WPF_LoginForm.View
             _clienteSeleccionado = cliente;
             CargarDatosCliente();
         }
+
+        // ... (mantener todos los métodos existentes)
 
         private void CargarDatosCliente()
         {
@@ -69,6 +80,225 @@ namespace WPF_LoginForm.View
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        // Método para generar PDF del cliente
+        private void GenerarPDFCliente()
+        {
+            try
+            {
+                // Abrir diálogo para guardar el archivo
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "PDF files (*.pdf)|*.pdf",
+                    FileName = $"Contrato_Cliente_{_clienteSeleccionado.Nombre.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd}.pdf"
+                };
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    // Crear el documento PDF
+                    Document document = new Document(PageSize.A4, 50, 50, 25, 25);
+                    PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(saveFileDialog.FileName, FileMode.Create));
+
+                    document.Open();
+
+                    // Configurar fuentes
+                    BaseFont baseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                    Font titleFont = new Font(baseFont, 18, Font.BOLD);
+                    Font headerFont = new Font(baseFont, 14, Font.BOLD);
+                    Font normalFont = new Font(baseFont, 10, Font.NORMAL);
+                    Font boldFont = new Font(baseFont, 10, Font.BOLD);
+
+                    // Título del documento
+                    iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("CONTRATO DE CRÉDITO", titleFont);
+                    title.Alignment = Element.ALIGN_CENTER;
+                    title.SpacingAfter = 20;
+                    document.Add(title);
+
+                    // Información del cliente
+                    document.Add(new iTextSharp.text.Paragraph("DATOS DEL CLIENTE", headerFont));
+                    document.Add(new iTextSharp.text.Paragraph($"Número: {_clienteSeleccionado.IdCliente}", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph($"Nombre: {_clienteSeleccionado.Nombre}", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph($"Empresa o Institución: {_clienteSeleccionado.EmpresaInstitucion ?? "N/A"}", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph($"Fecha: {DateTime.Now:dd/MM/yyyy}", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph($"Celular: {_clienteSeleccionado.Celular}", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph($"Domicilio: {_clienteSeleccionado.Domicilio}", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph($"C.I.: {_clienteSeleccionado.CI}", normalFont));
+
+                    // Información del garante (si existe)
+                    if (!string.IsNullOrEmpty(_clienteSeleccionado.Garante))
+                    {
+                        document.Add(new iTextSharp.text.Paragraph($"Garante: {_clienteSeleccionado.Garante}", normalFont));
+                        document.Add(new iTextSharp.text.Paragraph($"Celular Garante: {_clienteSeleccionado.CelGarante ?? "N/A"}", normalFont));
+                    }
+
+                    document.Add(new iTextSharp.text.Paragraph(" ", normalFont)); // Espacio
+
+                    // Obtener productos comprados
+                    var productosComprados = ObtenerProductosComprados();
+
+                    // Crear tabla de productos
+                    document.Add(new iTextSharp.text.Paragraph("DETALLE DE PRODUCTOS ADQUIRIDOS", headerFont));
+
+                    PdfPTable tableProductos = new PdfPTable(5);
+                    tableProductos.WidthPercentage = 100;
+                    tableProductos.SetWidths(new float[] { 1f, 3f, 1f, 2f, 2f });
+
+                    // Headers de la tabla
+                    tableProductos.AddCell(new PdfPCell(new Phrase("Item", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("Producto", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("Cant.", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("Precio Unit.", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("Subtotal", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                    int itemNumber = 1;
+                    decimal totalGeneral = 0;
+
+                    foreach (var producto in productosComprados)
+                    {
+                        tableProductos.AddCell(new PdfPCell(new Phrase(itemNumber.ToString(), normalFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                        tableProductos.AddCell(new PdfPCell(new Phrase(producto.NombreProducto, normalFont)));
+                        tableProductos.AddCell(new PdfPCell(new Phrase(producto.Cantidad.ToString(), normalFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                        tableProductos.AddCell(new PdfPCell(new Phrase($"Bs. {producto.PrecioUnitario:F2}", normalFont)) { HorizontalAlignment = Element.ALIGN_RIGHT });
+                        tableProductos.AddCell(new PdfPCell(new Phrase($"Bs. {producto.Subtotal:F2}", normalFont)) { HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                        totalGeneral += producto.Subtotal;
+                        itemNumber++;
+                    }
+
+                    // Fila del total
+                    tableProductos.AddCell(new PdfPCell(new Phrase("", normalFont)) { Border = 0 });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("", normalFont)) { Border = 0 });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("", normalFont)) { Border = 0 });
+                    tableProductos.AddCell(new PdfPCell(new Phrase("TOTAL:", boldFont)) { HorizontalAlignment = Element.ALIGN_RIGHT, Border = 0 });
+                    tableProductos.AddCell(new PdfPCell(new Phrase($"Bs. {totalGeneral:F2}", boldFont)) { HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                    document.Add(tableProductos);
+                    document.Add(new iTextSharp.text.Paragraph(" ", normalFont)); // Espacio
+
+                    // Información de crédito
+                    if (_creditosCliente != null && _creditosCliente.Any())
+                    {
+                        document.Add(new iTextSharp.text.Paragraph("INFORMACIÓN DEL CRÉDITO", headerFont));
+
+                        foreach (var credito in _creditosCliente)
+                        {
+                            document.Add(new iTextSharp.text.Paragraph($"Monto Total del Crédito: Bs. {credito.MontoTotal:F2}", normalFont));
+                            document.Add(new iTextSharp.text.Paragraph($"Número de Cuotas: {credito.Cuotas}", normalFont));
+                            document.Add(new iTextSharp.text.Paragraph($"Monto de Cuota Mensual: Bs. {credito.CuotaMensual:F2}", normalFont));
+                            document.Add(new iTextSharp.text.Paragraph(" ", normalFont));
+
+                            // Tabla de cuotas
+                            document.Add(new iTextSharp.text.Paragraph("CRONOGRAMA DE PAGOS", headerFont));
+
+                            PdfPTable tableCuotas = new PdfPTable(3);
+                            tableCuotas.WidthPercentage = 100;
+                            tableCuotas.SetWidths(new float[] { 1f, 2f, 2f });
+
+                            // Headers
+                            tableCuotas.AddCell(new PdfPCell(new Phrase("Cuota #", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                            tableCuotas.AddCell(new PdfPCell(new Phrase("Fecha Vencimiento", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                            tableCuotas.AddCell(new PdfPCell(new Phrase("Monto", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                            var cuotas = GenerarCuotas(credito);
+                            foreach (var cuota in cuotas)
+                            {
+                                tableCuotas.AddCell(new PdfPCell(new Phrase(cuota.NumeroCuota.ToString(), normalFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                                tableCuotas.AddCell(new PdfPCell(new Phrase(cuota.FechaVencimiento.ToString("dd/MM/yyyy"), normalFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                                tableCuotas.AddCell(new PdfPCell(new Phrase($"Bs. {cuota.MontoCuota:F2}", normalFont)) { HorizontalAlignment = Element.ALIGN_RIGHT });
+                            }
+
+                            document.Add(tableCuotas);
+                            document.Add(new iTextSharp.text.Paragraph(" ", normalFont));
+                        }
+                    }
+
+                    // Espacio para firma
+                    document.Add(new iTextSharp.text.Paragraph(" ", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph(" ", normalFont));
+                    document.Add(new iTextSharp.text.Paragraph(" ", normalFont));
+
+                    // Sección de firmas
+                    PdfPTable tableFirmas = new PdfPTable(2);
+                    tableFirmas.WidthPercentage = 100;
+                    tableFirmas.SetWidths(new float[] { 1f, 1f });
+
+                    PdfPCell firmaCliente = new PdfPCell();
+                    firmaCliente.Border = 0;
+                    firmaCliente.AddElement(new iTextSharp.text.Paragraph("_________________________", normalFont));
+                    firmaCliente.AddElement(new iTextSharp.text.Paragraph("Firma del Cliente", normalFont));
+                    firmaCliente.AddElement(new iTextSharp.text.Paragraph($"C.I.: {_clienteSeleccionado.CI}", normalFont));
+                    firmaCliente.HorizontalAlignment = Element.ALIGN_CENTER;
+
+                    PdfPCell firmaEmpresa = new PdfPCell();
+                    firmaEmpresa.Border = 0;
+                    firmaEmpresa.AddElement(new iTextSharp.text.Paragraph("_________________________", normalFont));
+                    firmaEmpresa.AddElement(new iTextSharp.text.Paragraph("Representante Legal", normalFont));
+                    firmaEmpresa.AddElement(new iTextSharp.text.Paragraph("Sistema Xplod C-Z", normalFont));
+                    firmaEmpresa.HorizontalAlignment = Element.ALIGN_CENTER;
+
+                    tableFirmas.AddCell(firmaCliente);
+                    tableFirmas.AddCell(firmaEmpresa);
+
+                    document.Add(tableFirmas);
+
+                    document.Close();
+
+                    MessageBox.Show($"PDF generado exitosamente en: {saveFileDialog.FileName}", "Éxito",
+                                   MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Abrir el PDF generado
+                    System.Diagnostics.Process.Start(saveFileDialog.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el PDF: {ex.Message}", "Error",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private List<DetalleProductoVenta> ObtenerProductosComprados()
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var productosComprados = (from v in context.Ventas
+                                              join dv in context.DetalleVentas on v.IdVenta equals dv.IdVenta
+                                              join p in context.Productos on dv.IdProducto equals p.IdProducto
+                                              where v.IdCliente == _clienteSeleccionado.IdCliente
+                                              select new DetalleProductoVenta
+                                              {
+                                                  FechaVenta = v.Fecha,
+                                                  NombreProducto = p.Nombre,
+                                                  DescripcionProducto = p.Descripcion,
+                                                  Cantidad = dv.Cantidad,
+                                                  PrecioUnitario = dv.PrecioUnitario,
+                                                  Subtotal = dv.Subtotal,
+                                                  TotalVenta = v.Total,
+                                                  IdVenta = v.IdVenta
+                                              })
+                                            .OrderByDescending(x => x.FechaVenta)
+                                            .ToList();
+
+                    return productosComprados;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener productos comprados: {ex.Message}", "Error",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+                return new List<DetalleProductoVenta>();
+            }
+        }
+
+        // Event handler para el botón de generar PDF
+        private void BtnGenerarPDF_Click(object sender, RoutedEventArgs e)
+        {
+            GenerarPDFCliente();
+        }
+
+        // ... (mantener todos los demás métodos existentes)
 
         private void ActualizarResumen()
         {
@@ -294,5 +524,30 @@ namespace WPF_LoginForm.View
             // Configurar el foco inicial
             dgCreditos.Focus();
         }
+    }
+
+    // Clase auxiliar para el detalle de productos en venta
+    public class DetalleProductoVenta
+    {
+        public DateTime FechaVenta { get; set; }
+        public string NombreProducto { get; set; }
+        public string DescripcionProducto { get; set; }
+        public int Cantidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal TotalVenta { get; set; }
+        public int IdVenta { get; set; }
+    }
+
+    // Clase auxiliar para las cuotas
+    public class Cuota
+    {
+        public int NumeroCuota { get; set; }
+        public DateTime FechaVencimiento { get; set; }
+        public decimal MontoCuota { get; set; }
+        public int IdCredito { get; set; }
+        public bool EstaPagada { get; set; }
+        public DateTime? FechaPago { get; set; }
+        public string EstadoCuota { get; set; }
     }
 }
