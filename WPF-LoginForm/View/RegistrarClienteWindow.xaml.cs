@@ -86,6 +86,18 @@ namespace WPF_LoginForm.View
                 {
                     using (var context = new MyDbContext())
                     {
+                        // 🔸 Verificar si ya existe un cliente con el mismo nombre (ignorando mayúsculas y espacios)
+                        string nombreNuevo = txtNombre.Text.Trim().ToLower();
+                        bool nombreDuplicado = context.Clientes.Any(c => c.Nombre.ToLower().Trim() == nombreNuevo);
+
+                        if (nombreDuplicado)
+                        {
+                            MessageBox.Show("⚠️ Ya existe un cliente con el mismo nombre. Verifica que no estés duplicando datos.",
+                                            "Nombre duplicado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+
+                        // 🔸 Si no hay duplicado, se continúa con el registro
                         var nuevoCliente = new Cliente
                         {
                             Nombre = txtNombre.Text,
@@ -100,16 +112,18 @@ namespace WPF_LoginForm.View
 
                         context.Clientes.Add(nuevoCliente);
                         context.SaveChanges();
-                        MessageBox.Show("Cliente registrado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        MessageBox.Show("✅ Cliente registrado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.DialogResult = true;
                         this.Close();
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Ocurrió un error al guardar el cliente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("❌ Ocurrió un error al guardar el cliente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+
 
         }
 

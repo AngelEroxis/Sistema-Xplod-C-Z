@@ -61,6 +61,10 @@ namespace WPF_LoginForm.Model
                 .HasRequired(dc => dc.Compra)
                 .WithMany(c => c.DetalleCompras)
                 .HasForeignKey(dc => dc.IdCompra);
+            modelBuilder.Entity<Venta>()
+                .HasRequired(v => v.Cliente)
+                .WithMany(c => c.Ventas)
+                .HasForeignKey(v => v.IdCliente);
 
             base.OnModelCreating(modelBuilder);
         }

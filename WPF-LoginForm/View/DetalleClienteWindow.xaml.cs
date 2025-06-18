@@ -81,6 +81,40 @@ namespace WPF_LoginForm.View
             }
         }
 
+        private void AgregarLogoSolo(iTextSharp.text.Document doc)
+        {
+            var logoTabla = new iTextSharp.text.pdf.PdfPTable(1) { WidthPercentage = 100 };
+
+            string logoPath = System.IO.Path.Combine(
+                System.IO.Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName,
+                "Images", "logo.png"
+            );
+
+            if (System.IO.File.Exists(logoPath))
+            {
+                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(logoPath);
+                img.ScaleAbsolute(50, 50);
+
+                logoTabla.AddCell(new iTextSharp.text.pdf.PdfPCell(img)
+                {
+                    Border = iTextSharp.text.Rectangle.NO_BORDER,
+                    HorizontalAlignment = iTextSharp.text.Element.ALIGN_LEFT
+                });
+            }
+            else
+            {
+                logoTabla.AddCell(new iTextSharp.text.pdf.PdfPCell(new iTextSharp.text.Phrase("Sin logo"))
+                {
+                    Border = iTextSharp.text.Rectangle.NO_BORDER
+                });
+            }
+
+            doc.Add(logoTabla);
+            doc.Add(new iTextSharp.text.Paragraph("\n"));
+        }
+
+
+
         // Método para generar PDF del cliente
         private void GenerarPDFCliente()
         {
@@ -100,7 +134,7 @@ namespace WPF_LoginForm.View
                     PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(saveFileDialog.FileName, FileMode.Create));
 
                     document.Open();
-
+                    AgregarLogoSolo(document);
                     // Configurar fuentes
                     BaseFont baseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                     Font titleFont = new Font(baseFont, 18, Font.BOLD);

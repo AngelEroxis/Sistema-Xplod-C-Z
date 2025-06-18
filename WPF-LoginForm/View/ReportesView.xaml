@@ -35,48 +35,104 @@
 
                         <!-- Panel de filtros -->
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,0,0,10" VerticalAlignment="Center">
+                            <Button Content="➕ Añadir al Reporte"
+                    Width="160"
+                    Height="30"
+                    Margin="0,0,10,0"
+                    Click="BtnAgregarClienteReporte_Click"/>
                             <TextBox x:Name="txtBusquedaClientes"
-         Width="200"
-         Height="30"
-         Margin="0,0,10,0"
-         VerticalContentAlignment="Center"/>
-
-
+                     Width="200"
+                     Height="30"
+                     Margin="0,0,10,0"
+                     VerticalContentAlignment="Center"/>
                             <Button Content="Filtrar"
-                                Width="100"
-                                Height="30"
-                                Margin="0,0,10,0"
-                                Click="BtnFiltrarClientes_Click"/>
+                    Width="100"
+                    Height="30"
+                    Margin="0,0,10,0"
+                    Click="BtnFiltrarClientes_Click"/>
                             <Button Content="⬇ Exportar PDF"
-                                Click="ExportarClientes_Click"
-                                Width="180"
-                                Height="35"
-                                Background="#27ae60"
-                                Foreground="White"
-                                FontWeight="Bold"/>
+                    Click="ExportarClientes_Click"
+                    Width="180"
+                    Height="35"
+                    Background="#27ae60"
+                    Foreground="White"
+                    FontWeight="Bold"/>
                         </StackPanel>
 
-                        <!-- DataGrid -->
+                        <!-- Primer DataGrid -->
                         <DataGrid x:Name="dgClientesRpt"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   Margin="0"
                   Background="White"
                   HeadersVisibility="Column"
-                  GridLinesVisibility="Horizontal"/>
+                  GridLinesVisibility="Horizontal"
+                  DockPanel.Dock="Top">
+                            <!-- Aseguramos que se muestre en la parte superior -->
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*" />
+                                <DataGridTextColumn Header="CI" Binding="{Binding CI}" Width="*" />
+                                <DataGridTextColumn Header="Nº Ítem" Binding="{Binding NumItem}" Width="*" />
+                                <DataGridTextColumn Header="Empresa" Binding="{Binding EmpresaInstitucion}" Width="*" />
+                                <DataGridTextColumn Header="Productos" Binding="{Binding Productos}" Width="2*" />
+                                <DataGridTextColumn Header="Cant." Binding="{Binding CantidadTotal}" Width="Auto" />
+                                <DataGridTextColumn Header="P. Unit." Binding="{Binding PrecioUnitarioPromedio, StringFormat=N2}" Width="Auto" />
+                                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=N2}" Width="Auto" />
+                                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=dd/MM/yyyy HH:mm}" Width="Auto" />
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding TipoVenta}" Width="Auto" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- Botón para añadir clientes al reporte -->
+                        <Button Content="➕ Añadir al Reporte"
+                Width="160"
+                Height="30"
+                Margin="0,0,10,0"
+                Click="BtnAgregarClienteReporte_Click"
+                DockPanel.Dock="Top" />
+
+                        <!-- Segundo DataGrid para mostrar clientes seleccionados -->
+                        <DataGrid x:Name="dgClientesSeleccionados"
+                  AutoGenerateColumns="False"
+                  Height="200"
+                  Margin="0,10,0,0"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  IsReadOnly="True"
+                  DockPanel.Dock="Bottom">
+                            <!-- Aseguramos que se muestre abajo -->
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*" />
+                                <DataGridTextColumn Header="CI" Binding="{Binding CI}" Width="*" />
+                                <DataGridTextColumn Header="Producto(s)" Binding="{Binding Productos}" Width="2*" />
+                                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=N2}" Width="Auto" />
+                                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=dd/MM/yyyy HH:mm}" Width="Auto" />
+                                <DataGridTemplateColumn Header="Acciones" Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Quitar" Click="BtnQuitarCliente_Click" Tag="{Binding}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </DockPanel>
                 </TabItem>
 
+
                 <!-- Ventas -->
-                <TabItem Header="💰 Ventas">
+                <TabItem Header="💰 Ventas" Loaded="TabVentas_Loaded">
                     <DockPanel>
 
                         <!-- Panel de filtros -->
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,0,0,10" VerticalAlignment="Center">
                             <TextBlock Text="Desde:" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                            <DatePicker x:Name="dpFechaInicio" Width="120" Margin="0,0,10,0"/>
+                            <DatePicker x:Name="dpFechaInicio" Width="120" Margin="0,0,10,0"
+                                SelectedDateChanged="dpFechaInicio_SelectedDateChanged"/>
                             <TextBlock Text="Hasta:" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                            <DatePicker x:Name="dpFechaFin" Width="120" Margin="0,0,10,0"/>
+                            <DatePicker x:Name="dpFechaFin" Width="120" Margin="0,0,10,0"
+                                SelectedDateChanged="dpFechaFin_SelectedDateChanged"/>
                             <Button Content="⬇ Exportar PDF"
                     Click="ExportarVentas_Click"
                     Width="180"
@@ -88,12 +144,25 @@
 
                         <!-- DataGrid de ventas -->
                         <DataGrid x:Name="dgVentasRpt"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  Margin="0"
-                  Background="White"
-                  HeadersVisibility="Column"
-                  GridLinesVisibility="Horizontal"/>
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          Margin="10"
+          Background="White"
+          HeadersVisibility="Column"
+          GridLinesVisibility="Horizontal">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID Venta" Binding="{Binding IdVenta}" Width="*" />
+                                <DataGridTextColumn Header="Producto" Binding="{Binding Producto}" Width="2*" />
+                                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="*" />
+                                <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnitario, StringFormat=N2}" Width="*" />
+                                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=N2}" Width="*" />
+                                <DataGridTextColumn Header="Crédito" Binding="{Binding EsCreditoTexto}" Width="*" />
+                                <DataGridTextColumn Header="Método de Pago" Binding="{Binding MetodoPago}" Width="*" />
+                                <DataGridTextColumn Header="Fecha" Binding="{Binding FechaTexto}" Width="2*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </DockPanel>
                 </TabItem>
 
@@ -112,12 +181,24 @@
                                 DockPanel.Dock="Top"/>
 
                         <DataGrid x:Name="dgCreditosRpt"
-                                  AutoGenerateColumns="False"
-                                  IsReadOnly="True"
-                                  Margin="0"
-                                  Background="White"
-                                  HeadersVisibility="Column"
-                                  GridLinesVisibility="Horizontal"/>
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          Margin="0"
+          Background="White"
+          HeadersVisibility="Column"
+          GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteNombre}" Width="*" />
+                                <DataGridTextColumn Header="Productos" Binding="{Binding Productos}" Width="2*" />
+                                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="80" />
+                                <DataGridTextColumn Header="Total Crédito (Bs)" Binding="{Binding MontoTotal, StringFormat=N2}" Width="100" />
+                                <DataGridTextColumn Header="Saldo Pendiente (Bs)" Binding="{Binding SaldoPendiente, StringFormat=N2}" Width="100" />
+                                <DataGridTextColumn Header="Cuotas" Binding="{Binding Cuotas}" Width="60" />
+                                <DataGridTextColumn Header="Estado" Binding="{Binding EstadoCredito}" Width="100" />
+                                <DataGridTextColumn Header="Fecha" Binding="{Binding FechaCredito}" Width="100" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </DockPanel>
                 </TabItem>
             </TabControl>

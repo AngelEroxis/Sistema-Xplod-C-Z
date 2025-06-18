@@ -40,6 +40,8 @@ namespace WPF_LoginForm.Model
         public string CelGarante { get; set; }
 
         public virtual ICollection<Credito> Creditos { get; set; }
+        public virtual ICollection<Venta> Ventas { get; set; }
+
 
         // NUEVAS PROPIEDADES CALCULADAS
         [NotMapped]
