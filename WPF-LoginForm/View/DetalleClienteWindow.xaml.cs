@@ -175,13 +175,21 @@ namespace WPF_LoginForm.View
                     document.Add(tableProductos);
                     document.Add(new iTextSharp.text.Paragraph(" ", normalFont)); // Espacio
 
-                    // Información de crédito
-                    if (_creditosCliente != null && _creditosCliente.Any())
+                    using (var context = new MyDbContext())
                     {
-                        document.Add(new iTextSharp.text.Paragraph("INFORMACIÓN DEL CRÉDITO", headerFont));
+                        var ultimaVentaId = context.Ventas
+                            .Where(v => v.IdCliente == _clienteSeleccionado.IdCliente)
+                            .OrderByDescending(v => v.Fecha)
+                            .Select(v => v.IdVenta)
+                            .FirstOrDefault();
 
-                        foreach (var credito in _creditosCliente)
+                        var credito = context.Creditos
+                            .FirstOrDefault(c => c.IdVenta == ultimaVentaId);
+
+                        if (credito != null)
                         {
+                            // Aquí va tu bloque para mostrar la información del crédito ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+                            document.Add(new iTextSharp.text.Paragraph("INFORMACIÓN DEL CRÉDITO", headerFont));
                             document.Add(new iTextSharp.text.Paragraph($"Monto Total del Crédito: Bs. {credito.MontoTotal:F2}", normalFont));
                             document.Add(new iTextSharp.text.Paragraph($"Número de Cuotas: {credito.Cuotas}", normalFont));
                             document.Add(new iTextSharp.text.Paragraph($"Monto de Cuota Mensual: Bs. {credito.CuotaMensual:F2}", normalFont));
@@ -263,10 +271,18 @@ namespace WPF_LoginForm.View
             {
                 using (var context = new MyDbContext())
                 {
+                    // Obtener la última venta del cliente
+                    var ultimaVentaId = context.Ventas
+                                               .Where(v => v.IdCliente == _clienteSeleccionado.IdCliente)
+                                               .OrderByDescending(v => v.Fecha)
+                                               .Select(v => v.IdVenta)
+                                               .FirstOrDefault();
+
+                    // Obtener productos de esa venta
                     var productosComprados = (from v in context.Ventas
                                               join dv in context.DetalleVentas on v.IdVenta equals dv.IdVenta
                                               join p in context.Productos on dv.IdProducto equals p.IdProducto
-                                              where v.IdCliente == _clienteSeleccionado.IdCliente
+                                              where v.IdVenta == ultimaVentaId
                                               select new DetalleProductoVenta
                                               {
                                                   FechaVenta = v.Fecha,
@@ -278,11 +294,11 @@ namespace WPF_LoginForm.View
                                                   TotalVenta = v.Total,
                                                   IdVenta = v.IdVenta
                                               })
-                                            .OrderByDescending(x => x.FechaVenta)
-                                            .ToList();
+                                             .ToList();
 
                     return productosComprados;
                 }
+
             }
             catch (Exception ex)
             {
@@ -306,24 +322,36 @@ namespace WPF_LoginForm.View
             {
                 var montoTotal = _creditosCliente.Sum(c => c.MontoTotal);
                 var saldoPendiente = _creditosCliente.Sum(c => c.SaldoPendiente);
-                var totalCuotas = _creditosCliente.Sum(c => c.Cuotas);
                 var estado = saldoPendiente > 0 ? "PENDIENTE" : "PAGADO";
 
                 txtMontoTotal.Text = $"Bs. {montoTotal:F2}";
                 txtSaldoPendiente.Text = $"Bs. {saldoPendiente:F2}";
-                txtTotalCuotas.Text = totalCuotas.ToString();
                 txtEstado.Text = estado;
+
+                // Buscar el crédito más reciente del cliente
+                var creditoReciente = _creditosCliente
+                    .OrderByDescending(c => c.Venta.Fecha)
+                    .FirstOrDefault();
+
+                if (creditoReciente != null)
+                {
+                    txtTotalCuotas.Text = creditoReciente.Cuotas.ToString();
+                }
+                else
+                {
+                    txtTotalCuotas.Text = "0";
+                }
 
                 // Cambiar color según el estado
                 if (saldoPendiente > 0)
                 {
                     txtEstado.Foreground = new System.Windows.Media.SolidColorBrush(
-                        System.Windows.Media.Color.FromRgb(220, 53, 69)); // #dc3545
+                        System.Windows.Media.Color.FromRgb(220, 53, 69)); // rojo
                 }
                 else
                 {
                     txtEstado.Foreground = new System.Windows.Media.SolidColorBrush(
-                        System.Windows.Media.Color.FromRgb(40, 167, 69)); // #28a745
+                        System.Windows.Media.Color.FromRgb(40, 167, 69)); // verde
                 }
             }
             else
@@ -333,9 +361,10 @@ namespace WPF_LoginForm.View
                 txtTotalCuotas.Text = "0";
                 txtEstado.Text = "SIN CRÉDITO";
                 txtEstado.Foreground = new System.Windows.Media.SolidColorBrush(
-                    System.Windows.Media.Color.FromRgb(108, 117, 125)); // #6c757d
+                    System.Windows.Media.Color.FromRgb(108, 117, 125)); // gris
             }
         }
+
 
         private void dgCreditos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

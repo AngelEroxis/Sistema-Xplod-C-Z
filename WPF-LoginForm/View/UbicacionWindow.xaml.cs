@@ -43,7 +43,7 @@ namespace WPF_LoginForm.View
                     .Select(g => new UbicacionDisplay
                     {
                         Ubicacion = g.Key,
-                        ProductosResumen = string.Join(", ", g.Select(i => i.Producto.Nombre))
+                        ProductosResumen = string.Join(" |  |  | ", g.Select(i => i.Producto.Nombre))
                     })
                     .ToList();
 

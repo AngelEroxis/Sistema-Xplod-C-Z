@@ -63,22 +63,22 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="80"/>
                             <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat=Bs {0:N2}}" Width="100"/>
 
 
-                            <DataGridTemplateColumn Header="+" Width="30">
+                            <!-- Cantidad con botones -->
+                            <DataGridTemplateColumn Header="Cant." Width="120">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="+" Click="BtnAumentar_Click"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-
-                            <DataGridTemplateColumn Header="-" Width="30">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="-" Click="BtnDisminuir_Click"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="-" Width="25" 
+                            Click="BtnDisminuir_Click" 
+                            Tag="{Binding}" Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding Cantidad}" VerticalAlignment="Center" Width="25" TextAlignment="Center"/>
+                                            <Button Content="+" Width="25" 
+                            Click="BtnAumentar_Click" 
+                            Tag="{Binding}" Margin="5,0,0,0"/>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

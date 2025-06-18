@@ -76,12 +76,16 @@
                   Margin="0,0,0,10">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdProducto}" Width="60"/>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdProducto}" Width="40"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*"/>
                 <DataGridTextColumn Header="Proveedor" Binding="{Binding Proveedor.Nombre}" Width="150"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Inventario.StockActual}" Width="80"/>
-                <DataGridTextColumn Header="Precio" 
+                <DataGridTextColumn Header="Precio Venta" 
                     Binding="{Binding PrecioVenta, StringFormat='Bs. {0:N2}'}" 
+                    Width="100"/>
+                <DataGridTextColumn Header="Precio Compra" 
+                    Binding="{Binding PrecioCompra, StringFormat='Bs. {0:N2}'}" 
                     Width="100"/>
 
                 <DataGridTemplateColumn Header="Acciones" Width="120">

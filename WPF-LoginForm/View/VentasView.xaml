@@ -63,9 +63,10 @@
                       Height="400">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Producto" Binding="{Binding Nombre}" Width="*" />
-                    <DataGridTextColumn Header="Precio" Binding="{Binding PrecioVenta}" Width="100"/>
-                    <DataGridTextColumn Header="Stock" Binding="{Binding Inventario.StockActual}" Width="80"/>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding Nombre}" Width="170" />
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*" />
+                    <DataGridTextColumn Header="Precio" Binding="{Binding PrecioVenta}" Width="80"/>
+                    <DataGridTextColumn Header="Stock" Binding="{Binding Inventario.StockActual}" Width="50"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -91,9 +92,25 @@
                       Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Producto" Binding="{Binding Producto.Nombre}" Width="*" />
-                    <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="80"/>
-                    <DataGridTextColumn Header="Precio U." Binding="{Binding PrecioUnitario}" Width="90"/>
-                    <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal}" Width="100"/>
+                    <DataGridTextColumn Header="Precio U." Binding="{Binding PrecioUnitario}" Width="70"/>
+                    <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal}" Width="70"/>
+                   
+                    <!-- Cantidad con botones -->
+                    <DataGridTemplateColumn Header="Cant." Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="-" Width="25" 
+                            Click="BtnDisminuir_Click" 
+                            Tag="{Binding}" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{Binding Cantidad}" VerticalAlignment="Center" Width="25" TextAlignment="Center"/>
+                                    <Button Content="+" Width="25" 
+                            Click="BtnAumentar_Click" 
+                            Tag="{Binding}" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 

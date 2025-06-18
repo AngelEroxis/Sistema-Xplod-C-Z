@@ -62,8 +62,18 @@ namespace WPF_LoginForm.View
 
             try
             {
+
                 using (var ctx = new MyDbContext())
                 {
+                    // Verificar si el producto ya existe por nombre
+                    bool productoExistente = ctx.Productos.Any(prod => prod.Nombre.Equals(txtNombre.Text, StringComparison.OrdinalIgnoreCase));
+                    if (productoExistente && productoActual == null)
+                    {
+                        MessageBox.Show("Ya existe un producto con este nombre.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+
                     Producto p = productoActual ?? new Producto();
                     p.Nombre = txtNombre.Text;
                     p.Descripcion = txtDescripcion.Text;
@@ -79,7 +89,7 @@ namespace WPF_LoginForm.View
                         p.Inventario = new Inventario
                         {
                             StockActual = int.Parse(txtStockActual.Text),
-                            Ubicacion = "Almacén principal"
+                            Ubicacion = "Almacén A1"
                         };
                         ctx.Productos.Add(p);
                     }
@@ -99,8 +109,16 @@ namespace WPF_LoginForm.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message);
+                string errorMessage = ex.Message;
+                if (ex.InnerException != null)
+                    errorMessage += "\n\n" + ex.InnerException.Message;
+
+                if (ex.InnerException?.InnerException != null)
+                    errorMessage += "\n\n" + ex.InnerException.InnerException.Message;
+
+                MessageBox.Show("Error al guardar:\n" + errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)

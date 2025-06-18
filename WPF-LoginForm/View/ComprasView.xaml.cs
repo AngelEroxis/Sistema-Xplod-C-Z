@@ -98,6 +98,27 @@ namespace WPF_LoginForm.View
             ActualizarTotalCompra();
         }
 
+        private void BtnAumentar_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as Button)?.Tag is CarritoItem item)
+            {
+                item.Cantidad++;
+                dgCarritoCompra.Items.Refresh();
+                ActualizarTotalCompra();
+            }
+        }
+
+        private void BtnDisminuir_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as Button)?.Tag is CarritoItem item && item.Cantidad > 1)
+            {
+                item.Cantidad--;
+                dgCarritoCompra.Items.Refresh();
+                ActualizarTotalCompra();
+            }
+        }
+
+
         private void BtnRealizarCompra_Click(object s, RoutedEventArgs e)
         {
             if (!carrito.Any())
@@ -111,7 +132,6 @@ namespace WPF_LoginForm.View
                 MessageBox.Show("Selecciona un proveedor.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
 
             using (var ctx = new MyDbContext())
             {
@@ -134,16 +154,20 @@ namespace WPF_LoginForm.View
                         PrecioUnitario = ci.PrecioUnitario,
                         SubTotal = ci.Subtotal
                     });
-                    var inv = ctx.Inventarios.FirstOrDefault(i => i.IdProducto == ci.Producto.IdProducto);
-                    if (inv != null) inv.StockActual += ci.Cantidad;
+
+                    // ❌ NO actualizar el inventario aquí
+                    // var inv = ctx.Inventarios.FirstOrDefault(i => i.IdProducto == ci.Producto.IdProducto);
+                    // if (inv != null) inv.StockActual += ci.Cantidad;
                 }
+
                 ctx.SaveChanges();
             }
 
-            MessageBox.Show("Compra realizada con éxito!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Compra registrada correctamente. Puedes generar el PDF para enviarlo al proveedor.", "Compra registrada", MessageBoxButton.OK, MessageBoxImage.Information);
             BtnLimpiarCarrito_Click(s, null);
             CargarProductos();
         }
+
 
         private void BtnVerCompras_Click(object s, RoutedEventArgs e)
         {

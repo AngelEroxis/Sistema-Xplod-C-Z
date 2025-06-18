@@ -34,6 +34,7 @@ namespace WPF_LoginForm.Model
         public string EstadoCredito { get; set; }
 
         public virtual Cliente Cliente { get; set; }
+        public virtual Venta Venta { get; set; }  // Relación con la venta
 
 
         // Propiedad calculada para la cuota mensual

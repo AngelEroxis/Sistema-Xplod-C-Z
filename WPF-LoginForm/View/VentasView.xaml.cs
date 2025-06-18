@@ -64,38 +64,82 @@ namespace WPF_LoginForm.View
         {
             if (dgProductosVenta.SelectedItem is Producto prod)
             {
+                int stockDisponible = prod.Inventario?.StockActual ?? 0;
+
+                // Validar si ya no hay stock disponible
+                if (stockDisponible <= 0)
+                {
+                    MessageBox.Show("Este producto no tiene stock disponible.", "Stock agotado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 // Verificar si el producto ya está en el carrito
                 var item = carrito.FirstOrDefault(c => c.Producto.IdProducto == prod.IdProducto);
 
-                // Si el producto no está en el carrito, lo agregamos
                 if (item == null)
                 {
+                    // Agregamos por primera vez, solo si hay al menos 1 en stock
                     carrito.Add(new CarritoItem
                     {
                         Producto = prod,
                         Cantidad = 1,
-                        PrecioUnitario = prod.PrecioVenta // Asignamos el precio de venta al carrito
+                        PrecioUnitario = prod.PrecioVenta
                     });
                 }
                 else
                 {
-                    // Si el producto ya está en el carrito, solo incrementamos la cantidad, pero no debe exceder el stock disponible
-                    if (item.Cantidad < prod.Inventario.StockActual)
+                    // Si ya está en el carrito, validamos no superar el stock
+                    if (item.Cantidad < stockDisponible)
                     {
-                        item.Cantidad++; // Incrementamos la cantidad en 1
+                        item.Cantidad++;
                     }
                     else
                     {
-                        MessageBox.Show("No hay suficiente stock para agregar más unidades de este producto.", "Stock insuficiente", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return; // Salimos del método si no hay suficiente stock
+                        MessageBox.Show("No hay suficiente stock para agregar más unidades de este producto.",
+                                        "Stock insuficiente", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
                     }
                 }
 
-                dgCarrito.Items.Refresh(); // Refrescamos el carrito para mostrar la actualización
-                ActualizarTotal(); // Actualizamos el total de la venta
+                dgCarrito.Items.Refresh();
+                ActualizarTotal();
             }
         }
 
+
+
+        private void BtnAumentar_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as Button)?.DataContext as CarritoItem;
+            if (item != null)
+            {
+                int stockDisponible = item.Producto.Inventario?.StockActual ?? 0;
+
+                if (item.Cantidad < stockDisponible)
+                {
+                    item.Cantidad++;
+                    dgCarrito.Items.Refresh();
+                    ActualizarTotal();
+                }
+                else
+                {
+                    MessageBox.Show("No hay suficiente stock para agregar más unidades de este producto.",
+                                    "Stock insuficiente", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+
+        private void BtnDisminuir_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as Button)?.DataContext as CarritoItem;
+            if (item != null && item.Cantidad > 1)
+            {
+                item.Cantidad--;
+                dgCarrito.Items.Refresh(); // Refresca para ver el nuevo subtotal
+                ActualizarTotal();
+            }
+        }
 
 
         private void ActualizarTotal()

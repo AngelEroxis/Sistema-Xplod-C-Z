@@ -11,10 +11,7 @@ namespace WPF_LoginForm.Model
     [Table("INVENTARIO")]
     public class Inventario
     {
-        [Key]
-        [Column("id_inventario")]
-        public int IdInventario { get; set; }
-
+        [Key, ForeignKey("Producto")]
         [Column("id_producto")]
         public int IdProducto { get; set; }
 
