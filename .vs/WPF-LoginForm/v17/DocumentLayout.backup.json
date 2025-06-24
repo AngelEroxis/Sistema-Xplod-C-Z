@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\comprasrealizadaswindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\comprasrealizadaswindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|d:\\septimo semestre\\inf 730 taller\\modernloginui-wpf-main\\wpf-loginform\\view\\reportesview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B88027D1-FD36-4AA4-8FE3-1803A15C3EF2}|WPF-LoginForm\\WPF-LoginForm.csproj|solutionrelative:wpf-loginform\\view\\reportesview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,18 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReportesView.xaml.cs",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ReportesView.xaml.cs",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ReportesView.xaml.cs",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ReportesView.xaml.cs",
+              "RelativeToolTip": "WPF-LoginForm\\View\\ReportesView.xaml.cs",
+              "ViewState": "AgIAAFkCAAAAAAAAAAAiwAwCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T02:22:17.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdminDashboard.xaml",
-              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml",
-              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\AdminDashboard.xaml",
-              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\AdminDashboard.xaml",
-              "RelativeToolTip": "WPF-LoginForm\\View\\AdminDashboard.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-10T05:42:29.788Z",
+              "Title": "ComprasRealizadasWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "ToolTip": "D:\\Septimo Semestre\\INF 730 Taller\\ModernLoginUI-WPF-main\\WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "RelativeToolTip": "WPF-LoginForm\\View\\ComprasRealizadasWindow.xaml.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAcwFQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T02:19:35.893Z",
               "EditorCaption": ""
             }
           ]

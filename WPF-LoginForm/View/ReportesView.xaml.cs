@@ -499,22 +499,30 @@ namespace WPF_LoginForm.View
         {
             var logoTabla = new PdfPTable(1) { WidthPercentage = 100 };
 
-            string logoPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "Images", "logo.png");
+            string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "logo.png");
 
             if (File.Exists(logoPath))
             {
                 iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(logoPath);
                 img.ScaleAbsolute(50, 50);
-                logoTabla.AddCell(new PdfPCell(img) { Border = Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_LEFT });
+                logoTabla.AddCell(new PdfPCell(img)
+                {
+                    Border = Rectangle.NO_BORDER,
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                });
             }
             else
             {
-                logoTabla.AddCell(new PdfPCell(new Phrase("Sin logo")) { Border = Rectangle.NO_BORDER });
+                logoTabla.AddCell(new PdfPCell(new Phrase("Sin logo"))
+                {
+                    Border = Rectangle.NO_BORDER
+                });
             }
 
             doc.Add(logoTabla);
-            doc.Add(new iTextSharpText.Paragraph("\n")); // Espacio después del logo
+            doc.Add(new iTextSharp.text.Paragraph("\n")); // Espacio después del logo
         }
+
 
 
 

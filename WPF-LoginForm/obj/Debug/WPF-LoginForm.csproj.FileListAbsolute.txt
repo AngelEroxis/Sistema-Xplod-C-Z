@@ -140,3 +140,11 @@ D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debu
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\ReportesView.baml
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\VendedorManagementView.baml
 D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\View\VendedorManagementView.g.cs
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\System.Data.SQLite.dll
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\System.Data.SQLite.xml
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\WPF-LoginForm.exe.manifest
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\bin\Debug\WPF-LoginForm.application
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\WPF-LoginForm.exe.manifest
+D:\Septimo Semestre\INF 730 Taller\ModernLoginUI-WPF-main\WPF-LoginForm\obj\Debug\WPF-LoginForm.application

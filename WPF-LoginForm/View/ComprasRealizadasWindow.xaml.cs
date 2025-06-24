@@ -80,7 +80,7 @@ namespace WPF_LoginForm.View
                     var logoTitulo = new PdfPTable(2) { WidthPercentage = 100 };
                     logoTitulo.SetWidths(new float[] { 15, 85 });
 
-                    string logoPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "Images", "logo.png");
+                    string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "logo.png");
 
                     if (File.Exists(logoPath))
                     {

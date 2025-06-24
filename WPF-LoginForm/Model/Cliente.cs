@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SQLite;
+using System.Data.Entity;
+using System.Data.SQLite.EF6;
 
 namespace WPF_LoginForm.Model
 {

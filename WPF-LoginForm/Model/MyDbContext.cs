@@ -6,7 +6,8 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.SQLite;
+using System.Data.SQLite.EF6;
 
 
 namespace WPF_LoginForm.Model

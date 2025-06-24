@@ -14,7 +14,8 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using WPF_LoginForm.Model;
 using System.Data.Entity;
-
+using System.Data.SQLite;
+using System.Data.SQLite.EF6;
 
 
 namespace WPF_LoginForm.View

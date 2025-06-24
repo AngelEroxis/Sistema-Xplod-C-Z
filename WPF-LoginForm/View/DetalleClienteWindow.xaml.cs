@@ -86,8 +86,7 @@ namespace WPF_LoginForm.View
             var logoTabla = new iTextSharp.text.pdf.PdfPTable(1) { WidthPercentage = 100 };
 
             string logoPath = System.IO.Path.Combine(
-                System.IO.Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName,
-                "Images", "logo.png"
+                AppDomain.CurrentDomain.BaseDirectory, "Images", "logo.png"
             );
 
             if (System.IO.File.Exists(logoPath))
